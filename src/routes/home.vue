@@ -40,7 +40,7 @@
         top: 20%;
     }
 
-    .vue-home .list_left .list_1 {
+    .vue-home .list_left li {
         width: 100%;
         height: 120px;
         border-bottom: 4px solid #f7f7f7;
@@ -216,110 +216,25 @@
                         </div>
                         <a class="btn btn-default pull-right" href="txs.html?id=%block" role="button">View All</a>
                     </div>
-                    <div class="list_left">
-                        <div class="list_1">
-                            <div class=" list_banner_left">
+                    <ul class="list_left">
+                        <li v-for="o in blocks">
+                            <div class=list_banner_left>
                                 <p>
-                                    <a href="block.html?id=%Block">%Block</a>
+                                    <router-link v-bind:to="/block/ + o.height">{{ o.height }}</router-link>
                                 </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
+                                <p class="list_banner_left_p1">{{ o.timestamp }}</p>
                             </div>
                             <div class=" list_banner_right">
                                 Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
+                                <a href="address.html?id=%From">{{ o.miner }}</a>
                                 <p class="mt16">
                                     <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
+                                        <b>{{ o.txnCnt }}</b>
+                                    </a>
+                                    in 5 secs</p>
                             </div>
-                        </div>
-                        <div class="list_1">
-                            <div class=" list_banner_left">
-                                <p>
-                                    <a href="block.html?id=%Block">%Block</a>
-                                </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
-                            </div>
-                            <div class=" list_banner_right">
-                                Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
-                                <p class="mt16">
-                                    <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
-                            </div>
-                        </div>
-                        <div class="list_1">
-                            <div class=" list_banner_left">
-                                <p>
-                                    <a href="block.html?id=%Block">%Block</a>
-                                </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
-                            </div>
-                            <div class=" list_banner_right">
-                                Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
-                                <p class="mt16">
-                                    <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
-                            </div>
-                        </div>
-                        <div class="list_1 ">
-                            <div class=" list_banner_left">
-                                <p>
-                                    <a href="block.html?id=%Block">%Block</a>
-                                </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
-                            </div>
-                            <div class=" list_banner_right">
-                                Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
-                                <p class="mt16">
-                                    <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
-                            </div>
-                        </div>
-                        <div class="list_1 ">
-                            <div class=" list_banner_left">
-                                <p>
-                                    <a href="block.html?id=%Block">%Block</a>
-                                </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
-                            </div>
-                            <div class=" list_banner_right">
-                                Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
-                                <p class="mt16">
-                                    <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
-                            </div>
-                        </div>
-                        <div class="list_1 ">
-                            <div class=" list_banner_left">
-                                <p>
-                                    <a href="block.html?id=%Block">%Block</a>
-                                </p>
-                                <p class="list_banner_left_p1"> >%Age</p>
-
-                            </div>
-                            <div class=" list_banner_right">
-                                Mined By
-                                <a href="address.html?id=%From">%Name Tag</a>
-                                <p class="mt16">
-                                    <a href="txs.html?id=%Block">
-                                        <b>%txn</b>
-                                    </a> in 5 secs</p>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-md-6 banner_right ">
                     <div class="list_tab ">
@@ -427,56 +342,82 @@
     </div>
 </template>
 <script>
+    var api = require("@/assets/api");
 
     module.exports = {
-        mounted() {
-            // require("bootstrap");
-
-            var Highcharts = require("highcharts"),
-                chart = Highcharts.chart('chart', {
-                    title: {
-                        text: 'transations'
-                    },
-                    subtitle: {
-                        text: '数据来源：Nebulas'
-                    },
-                    yAxis: {
+        data() {
+            return {
+                blocks: []
+            };
+        },
+        methods: {
+            setUpChart() {
+                var Highcharts = require("highcharts"),
+                    chart = Highcharts.chart('chart', {
                         title: {
-                            text: '数量'
-                        }
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-                            pointStart: 2010
-                        }
-                    },
-                    series: [{
-                        name: 'transation',
-                        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-                    }],
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
+                            text: 'transations'
+                        },
+                        subtitle: {
+                            text: '数据来源：Nebulas'
+                        },
+                        yAxis: {
+                            title: {
+                                text: '数量'
                             }
-                        }]
-                    }
-                });
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle'
+                        },
+                        plotOptions: {
+                            series: {
+                                label: {
+                                    connectorAllowed: false
+                                },
+                                pointStart: 2010
+                            }
+                        },
+                        series: [{
+                            name: 'transation',
+                            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                        }],
+                        responsive: {
+                            rules: [{
+                                condition: {
+                                    maxWidth: 500
+                                },
+                                chartOptions: {
+                                    legend: {
+                                        layout: 'horizontal',
+                                        align: 'center',
+                                        verticalAlign: 'bottom'
+                                    }
+                                }
+                            }]
+                        }
+                    });
+            }
+        },
+        mounted() {
+
+            this.setUpChart();
+
+            api.getBlock("latest", o => {
+
+
+                this.blocks = o;
+            }, xhr => {
+                console.log(xhr);
+
+            });
+
+            api.getTx("latest", o => {
+                console.log(o);
+            }, xhr => {
+                console.log(xhr);
+
+            });
         }
 
     };
