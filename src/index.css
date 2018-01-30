@@ -24,19 +24,19 @@ ul {
 /*  overrides - bootstrap
     ============================================================ */
 
-.glyphicon-arrow-right {
+.fa-arrow-right {
     color: darkgreen;
 }
 
-.glyphicon-btc {
+.fa-btc {
     color: goldenrod;
 }
 
-.glyphicon-ok {
+.fa-ok {
     color: green;
 }
 
-.glyphicon-remove {
+.fa-remove {
     color: firebrick;
 }
 

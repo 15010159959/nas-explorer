@@ -211,7 +211,7 @@
                 <div class="col-md-6 banner_left">
                     <div class="list_tab">
                         <div class="img">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="fa fa-th-large" aria-hidden="true"></span>
                             Blocks
                         </div>
                         <a class="btn btn-default pull-right" href="txs.html?id=%block" role="button">View All</a>
@@ -239,7 +239,7 @@
                 <div class="col-md-6 banner_right ">
                     <div class="list_tab ">
                         <div class="img ">
-                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                            <span class="fa fa-list" aria-hidden="true"></span>
                             Transation
                         </div>
                         <a class="btn btn-default pull-right" href="txs.html?id=%txs" role="button">View All</a>
