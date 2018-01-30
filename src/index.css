@@ -1,0 +1,65 @@
+
+body {
+    color: #777;
+    font-size: 13px;
+}
+
+label {
+    font-weight: normal;
+}
+
+.c333   { color: #333; }
+.c777   { color: #777; }
+.mt16   { margin-top: 16px; }
+.mt20   { margin-top: 20px; }
+.mt30   { margin-top: 30px; }
+.t8     { top: 8%; }
+.t18    { top: 18%; }
+
+/*  overrides - bootstrap
+    ============================================================ */
+
+.glyphicon-arrow-right {
+    color: darkgreen;
+}
+
+.glyphicon-btc {
+    color: goldenrod;
+}
+
+.glyphicon-ok {
+    color: green;
+}
+
+.glyphicon-remove {
+    color: firebrick;
+}
+
+/*  pagination
+    ============================================================ */
+
+.pagination li a {
+    line-height: 19px;
+}
+
+/*  title and breadcrumb
+    ============================================================ */
+
+.title-and-breadcrumb {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.title-and-breadcrumb a {
+    color: inherit;
+}
+
+.title-and-breadcrumb .breadcrumb {
+    background-color: initial;
+    margin: 0;
+}
+
+.title-and-breadcrumb .breadcrumb > li:last-child {
+    color: #3498db;
+}
