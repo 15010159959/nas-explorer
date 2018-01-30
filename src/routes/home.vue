@@ -83,7 +83,7 @@
 
     /* 右侧列表 状态不同 左边框有不同的状态颜色 */
 
-    .vue-home .list_right .list_2_1 {
+    .vue-home .list_right li {
         width: 100%;
         height: 120px;
         border-bottom: 4px solid #f7f7f7;
@@ -159,6 +159,12 @@
         position: absolute;
         left: 14%;
         top: 12%;
+    }
+
+    .vue-home .list_right_banner_right p {
+        width: 80%;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .vue-home .chart_banner {
@@ -244,98 +250,23 @@
                         </div>
                         <a class="btn btn-default pull-right" href="txs.html?id=%txs" role="button">View All</a>
                     </div>
-                    <div class="list_right ">
-                        <div class="list_2_1 ">
+                    <ul class="list_right ">
+                        <li v-for="o in txs">
                             <div class="list_right_banner_left ">
                                 <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
                             </div>
                             <div class="list_right_banner_right ">
                                 <p>
-                                    <a href="./txs.html ">TX# 0x180ba8f73897c0cb26d76265...</a>
+                                    TX#<router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
                                 </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
-                                </p>
-                                <p>Amount 0 Ether</p>
-                            </div>
-                        </div>
-                        <div class="list_2_2 ">
-                            <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
-                            </div>
-                            <div class="list_right_banner_right ">
                                 <p>
-                                    <a href="# ">TX# 0x180ba8f73897c0cb26d76265...</a>
-                                </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
+                                    From<router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
+                                    To<router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
                                 </p>
                                 <p>Amount 0 Ether</p>
                             </div>
-                        </div>
-                        <div class="list_2_3 ">
-                            <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
-                            </div>
-                            <div class="list_right_banner_right ">
-                                <p>
-                                    <a href="# ">TX# 0x180ba8f73897c0cb26d76265...</a>
-                                </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
-                                </p>
-                                <p>Amount 0 Ether</p>
-                            </div>
-                        </div>
-                        <div class="list_2_2 ">
-                            <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
-                            </div>
-                            <div class="list_right_banner_right ">
-                                <p>
-                                    <a href="# ">TX# 0x180ba8f73897c0cb26d76265...</a>
-                                </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
-                                </p>
-                                <p>Amount 0 Ether</p>
-                            </div>
-                        </div>
-                        <div class="list_2_3 ">
-                            <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
-                            </div>
-                            <div class="list_right_banner_right ">
-                                <p>
-                                    <a href="# ">TX# 0x180ba8f73897c0cb26d76265...</a>
-                                </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
-                                </p>
-                                <p>Amount 0 Ether</p>
-                            </div>
-                        </div>
-                        <div class="list_2_1 ">
-                            <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
-                            </div>
-                            <div class="list_right_banner_right ">
-                                <p>
-                                    <a href="# ">TX# 0x180ba8f73897c0cb26d76265...</a>
-                                </p>
-                                <p>From
-                                    <a href="# ">0x180ba8f73897c0cb... </a>To
-                                    <a href="# ">0x180ba8f73897c0cb... </a>
-                                </p>
-                                <p>Amount 0 Ether</p>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -347,7 +278,8 @@
     module.exports = {
         data() {
             return {
-                blocks: []
+                blocks: [],
+                txs: []
             };
         },
         methods: {
@@ -404,8 +336,6 @@
             this.setUpChart();
 
             api.getBlock("latest", o => {
-
-
                 this.blocks = o;
             }, xhr => {
                 console.log(xhr);
@@ -413,7 +343,7 @@
             });
 
             api.getTx("latest", o => {
-                console.log(o);
+                this.txs = o;
             }, xhr => {
                 console.log(xhr);
 
