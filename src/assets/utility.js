@@ -1,15 +1,14 @@
 
-export {
-    ajax,
-    ajaxSplitAction,
-    getUniqueInt,
-    millisecondsToMinutesAndSeconds,
-    parseQueryString,
-    q,
-    randomInt,
-    shuffle,
-    ua,
-    yyyymmdd
+module.exports = {
+    ajax: ajax,
+    ajaxSplitAction: ajaxSplitAction,
+    millisecondsToMinutesAndSeconds: millisecondsToMinutesAndSeconds,
+    parseQueryString: parseQueryString,
+    q: q,
+    randomInt: randomInt,
+    shuffle: shuffle,
+    ua: ua,
+    yyyymmdd: yyyymmdd
 };
 
 ////////////////////////////////////////////////////////////
@@ -51,7 +50,8 @@ function ajax(action, args, done, fail) {
     else
         args = undefined; // 把 null 之类的统一成 undefined, JSON.stringify(undefined) 不产生字符串
 
-    xhr.send(JSON.stringify(args));
+    // wtf - webpack 要求 window.JSON.stringify
+    xhr.send(window.JSON.stringify(args));
     return xhr;
 }
 
@@ -67,18 +67,6 @@ function ajaxSplitAction(s) {
     }
 
     return [method, url];
-}
-
-function getUniqueInt() {
-    var i = Number.MIN_SAFE_INTEGER;
-
-    return function () {
-        if (i == Number.MAX_SAFE_INTEGER) {
-            console.log("uniqueInt 警告 - 重置");
-            i = Number.MIN_SAFE_INTEGER;
-        }
-        return ++i;
-    };
 }
 
 function millisecondsToMinutesAndSeconds(ms) {

@@ -1,7 +1,7 @@
 
 module.exports = [{
     component: require("@/routes/block").default,
-    path: "/block"
+    path: "/block/:id"
 }, {
     component: require("@/routes/home").default,
     path: ""

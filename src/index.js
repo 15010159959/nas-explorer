@@ -1,30 +1,20 @@
 
-var api = require("@/assets/api"),
-    Vue = require("vue").default,
-    VueRouter = require("vue-router").default,
-    gRouter = new VueRouter({ routes: require("@/assets/routes") });
+var Vue = require("vue").default,
+    VueRouter = require("vue-router").default;
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
-// gRouter.beforeEach(onBeforeEach);
 
+require("bootstrap");
 require("bootstrap/dist/css/bootstrap.min.css");
 require("font-awesome/css/font-awesome.min.css");
-require("@/index.css");
+require("./index.css");
 
 new Vue({
     components: {
         vueFooter: require("@/components/vue-footer").default,
         vueHeader: require("@/components/vue-header").default
     },
-    computed: {
-    },
-    data: {
-    },
     el: ".vue",
-    methods: {
-    },
-    mounted() {
-    },
-    router: gRouter
+    router: new VueRouter({ routes: require("@/assets/routes") })
 });
