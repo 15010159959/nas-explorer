@@ -30,46 +30,46 @@
 <template>
     <nav class="bg-light navbar navbar-expand-lg navbar-light vue-header">
         <div class="container">
-            <a class="navbar-brand" href="#">Explorer</a>
+            <router-link class="navbar-brand" to="/">Explorer</router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
+                        <a class=nav-link href=#>Home
+                            <span class=sr-only>(current)</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BLOCKCHAIN</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="#">View Txns</a>
-                            <a class="dropdown-item" href="#">View Pending Txns</a>
-                            <a class="dropdown-item" href="#">View Contract Internal Txns</a>
-                            <a class="dropdown-item" href="#">View Blocks</a>
-                            <a class="dropdown-item" href="#">View Uncles</a>
+                            <a class=dropdown-item href=#>View Txns</a>
+                            <a class=dropdown-item href=#>View Pending Txns</a>
+                            <a class=dropdown-item href=#>View Contract Internal Txns</a>
+                            <a class=dropdown-item href=#>View Blocks</a>
+                            <a class=dropdown-item href=#>View Uncles</a>
                             <!-- <div class="dropdown-divider"></div> -->
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACCOUNT</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role=button data-toggle=dropdown aria-haspopup="true" aria-expanded="false">ACCOUNT</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="#">ALL Accounts</a>
-                            <a class="dropdown-item" href="#">Verified Contracts</a>
+                            <a class=dropdown-item href=#>ALL Accounts</a>
+                            <a class=dropdown-item href=#>Verified Contracts</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">TOKEN
-                            <span class="sr-only">(current)</span>
+                    <li class=nav-item>
+                        <a class=nav-link href=#>TOKEN
+                            <span class=sr-only>(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CHART
-                            <span class="sr-only">(current)</span>
+                    <li class=nav-item>
+                        <a class=nav-link href=#>CHART
+                            <span class=sr-only>(current)</span>
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <!-- <li class=nav-item>
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li> -->
                 </ul>

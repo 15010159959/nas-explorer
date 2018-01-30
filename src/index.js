@@ -1,3 +1,5 @@
+//
+// http://fontawesome.io/icons/
 
 var Vue = require("vue").default,
     VueRouter = require("vue-router").default;

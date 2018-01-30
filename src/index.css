@@ -32,7 +32,7 @@ ul {
     color: goldenrod;
 }
 
-.fa-ok {
+.fa-check {
     color: green;
 }
 
@@ -45,26 +45,4 @@ ul {
 
 .pagination li a {
     line-height: 19px;
-}
-
-/*  title and breadcrumb
-    ============================================================ */
-
-.title-and-breadcrumb {
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
-}
-
-.title-and-breadcrumb a {
-    color: inherit;
-}
-
-.title-and-breadcrumb .breadcrumb {
-    background-color: initial;
-    margin: 0;
-}
-
-.title-and-breadcrumb .breadcrumb > li:last-child {
-    color: #3498db;
 }

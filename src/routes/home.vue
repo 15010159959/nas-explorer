@@ -257,11 +257,14 @@
                             </div>
                             <div class="list_right_banner_right ">
                                 <p>
-                                    TX#<router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
+                                    TX#
+                                    <router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
                                 </p>
                                 <p>
-                                    From<router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
-                                    To<router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
+                                    From
+                                    <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
+                                    To
+                                    <router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
                                 </p>
                                 <p>Amount 0 Ether</p>
                             </div>
