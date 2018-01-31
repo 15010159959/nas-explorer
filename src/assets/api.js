@@ -33,6 +33,17 @@ module.exports = {
             else
                 fail(xhr);
         }, fail);
+    },
+
+    getTxByHash(id, done, fail) {
+        ajax1("tx/" + id, null, function (s, xhr) {
+            var o = JSON.parse(s);
+
+            if (o.code == 0)
+                done(o.data);
+            else
+                fail(xhr);
+        }, fail);
     }
 };
 
