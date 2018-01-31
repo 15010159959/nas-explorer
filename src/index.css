@@ -8,11 +8,6 @@ label {
     font-weight: normal;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
 .c333   { color: #333; }
 .c777   { color: #777; }
 .mt16   { margin-top: 16px; }
@@ -38,11 +33,4 @@ ul {
 
 .fa-remove {
     color: firebrick;
-}
-
-/*  pagination
-    ============================================================ */
-
-.pagination li a {
-    line-height: 19px;
 }

@@ -1,42 +1,35 @@
 <style>
-    .txs-internal .info-and-pagination .info a {
+    .vue-txs-internal .info-and-pagination .info a {
         color: inherit;
     }
 
-    .txs-internal tr>.ne:nth-child(1),
-    .txs-internal tr>.ne:nth-child(2) {
+    .vue-txs-internal tr>.ne:nth-child(1),
+    .vue-txs-internal tr>.ne:nth-child(2) {
         background-color: gainsboro;
     }
 
-    .txs-internal tr>td:nth-child(3) {
+    .vue-txs-internal tr>td:nth-child(3) {
         background-color: #eaeaea;
     }
 
-    .txs-internal td,
-    .txs-internal th {
+    .vue-txs-internal td,
+    .vue-txs-internal th {
         border-top-color: #ddd;
     }
-
-    /* .txs-internal .pagination>* {
-        vertical-align: middle;
-    } */
 </style>
 <template>
-    <div class=txs-internal v-bind:triggerComputed=urlChange>
+    <!-- https://etherscan.io/txsInternal -->
+    <div class=vue-txs-internal v-bind:triggerComputed=urlChange>
         <vue-bread v-bind:arr=breadcrumb title="Contract Internal Transactions"></vue-bread>
 
-        <!--    info and pagination
-        ============================================================ -->
         <div class=container>
-            <div class="info-and-pagination justify-content-between row">
-                <div class="col-auto info">
-                    <div class="mt20">A Total Of %1 Internal Transactions found</div>
+            <div class="info-and-pagination justify-content-between mt20 row">
+                <div class="col info">
+                    <div>A Total Of %1 Internal Transactions found</div>
                     <div>
                         (showing the last %2 records only)
                         <label>
-                            <!-- don't forget other parameters -->
                             <a href="?type=all">
-                                <!-- to check a radio, add "checked" attribute, i.e. <input type=radio name=type value=all checked> -->
                                 <input type=radio name=type value=all>
                                 <b>All Types</b>
                             </a>
@@ -55,8 +48,9 @@
                         </label>
                     </div>
                 </div>
-                <vue-pagination class="col-auto mt20"></vue-pagination>
+                <vue-pagination class=col-auto></vue-pagination>
             </div>
+
             <!--    the table
                 ============================================================ -->
             <table class="mt20 table">
@@ -219,7 +213,6 @@
             <vue-pagination right=1></vue-pagination>
         </div>
     </div>
-    </div>
 </template>
 <script>
     var api = require("@/assets/api");
@@ -240,7 +233,6 @@
         },
         data() {
             return {
-                arr: {},
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Internal Transactions", to: "" }
