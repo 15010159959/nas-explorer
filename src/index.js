@@ -1,16 +1,14 @@
-//
-// http://fontawesome.io/icons/
 
 var Vue = require("vue").default,
     VueRouter = require("vue-router").default;
-
-Vue.config.productionTip = false;
-Vue.use(VueRouter);
 
 require("bootstrap");
 require("bootstrap/dist/css/bootstrap.min.css");
 require("font-awesome/css/font-awesome.min.css");
 require("./index.css");
+
+Vue.config.productionTip = false;
+Vue.use(VueRouter);
 
 new Vue({
     components: {

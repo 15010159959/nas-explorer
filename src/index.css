@@ -6,23 +6,14 @@ body {
 
 dl, ol, ul {
     list-style: none;
-    margin: 0;
     padding: 0;
-}
-
-label {
-    font-weight: normal;
 }
 
 .c333   { color: #333; }
 .c777   { color: #777; }
-.mt16   { margin-top: 16px; }
 .mt20   { margin-top: 20px; }
-.mt30   { margin-top: 30px; }
-.t8     { top: 8%; }
-.t18    { top: 18%; }
 
-/*  overrides - bootstrap
+/*  font awesome
     ============================================================ */
 
 .fa-arrow-right {
@@ -39,4 +30,19 @@ label {
 
 .fa-remove {
     color: firebrick;
+}
+
+/*  overrides - bootstrap
+    ============================================================ */
+
+a, .btn-link {
+    color: #3498db;
+}
+
+dl, ol, ul {
+    margin: 0;
+}
+
+label {
+    font-weight: normal;
 }

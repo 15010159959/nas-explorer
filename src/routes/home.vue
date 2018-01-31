@@ -3,6 +3,10 @@
         background-color: #f7f7f7;
     }
 
+    .vue-home .mt16 {
+        margin-top: 16px;
+    }
+
     .vue-home .banner {
         margin-top: 20px;
     }
