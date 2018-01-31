@@ -85,16 +85,31 @@
         top: 20%;
     }
 
-    /* 右侧列表 状态不同 左边框有不同的状态颜色 */
-
     .vue-home .list_right li {
         width: 100%;
         height: 120px;
         border-bottom: 4px solid #f7f7f7;
         background-color: #fff;
-        border-left: 2px solid yellow;
+        border-left: 2px solid;
         position: relative;
+    }
 
+    /* 右侧列表 状态不同 左边框有不同的状态颜色, 目前不知道啥状态所以是按顺序给颜色 */
+
+    .vue-home .list_right li:nth-of-type(4n + 1) {
+        border-left-color: #3cba54;
+    }
+
+    .vue-home .list_right li:nth-of-type(4n + 2) {
+        border-left-color: #f4c20d;
+    }
+
+    .vue-home .list_right li:nth-of-type(4n + 3) {
+        border-left-color: #db3236;
+    }
+
+    .vue-home .list_right li:nth-of-type(4n + 4) {
+        border-left-color: #4885ed;
     }
 
     .vue-home .list_right .list_2_2 {
@@ -104,7 +119,6 @@
         background-color: #fff;
         border-left: 2px solid gray;
         position: relative;
-
     }
 
     .vue-home .list_right .list_2_3 {
@@ -114,7 +128,6 @@
         background-color: #fff;
         border-left: 2px solid red;
         position: relative;
-
     }
 
     .vue-home .list_banner_left {
