@@ -4,12 +4,12 @@
         <vue-bread v-bind:arr=breadcrumb title="Blocks"></vue-bread>
 
         <div class=container>
-            <div class="info-and-pagination justify-content-between mt20 row">
+            <div class="align-items-center info-and-pagination justify-content-between mt20 row">
                 <div class=col>Showing Block (%1 to %2) out of %3 total blocks</div>
                 <vue-pagination class=col-auto></vue-pagination>
             </div>
 
-            <table class=table>
+            <table class="mt20 table">
                 <tr>
                     <th>Height</th>
                     <th>Age</th>

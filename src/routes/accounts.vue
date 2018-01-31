@@ -4,7 +4,7 @@
         <vue-bread v-bind:arr=breadcrumb title="All Accounts"></vue-bread>
 
         <div class="container mt20">
-            <div class="info-and-pagination justify-content-between row">
+            <div class="align-items-center info-and-pagination justify-content-between row">
                 <div class=col>
                     A total of %(more than > 1999999) accounts found (%1 Ether)
                     <br>

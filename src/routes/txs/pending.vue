@@ -7,12 +7,12 @@
     <div class=vue-txs-pending>
         <vue-bread v-bind:arr=breadcrumb title="Pending Transactions"></vue-bread>
 
-        <div class=container>
-            <div class="mt20 tip">Tip: Check out the
+        <div class="container mt20">
+            <div class=tip>Tip: Check out the
                 <a href="#">Pending Transaction Pool - Time Series</a>
             </div>
 
-            <div class="info-and-pagination justify-content-between mt20 row">
+            <div class="align-items-center info-and-pagination justify-content-between mt20 row">
                 <div class=col>A total of %1 Pending txns found</div>
                 <vue-pagination class=col-auto></vue-pagination>
             </div>

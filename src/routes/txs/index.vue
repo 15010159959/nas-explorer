@@ -33,12 +33,12 @@
     <div class=vue-txs>
         <vue-bread v-bind:arr=breadcrumb title=Transactions></vue-bread>
 
-        <div class=container>
-            <div class="mt20 tip">Sponsored Link: Winding Tree: Decentralized Travel Distribution. Trusted by Lufthansa, SWISS, Air New Zealand, and more!
+        <div class="container mt20">
+            <div class=tip>Sponsored Link: Winding Tree: Decentralized Travel Distribution. Trusted by Lufthansa, SWISS, Air New Zealand, and more!
                 <a href="#">Join Now!</a>
             </div>
 
-            <div class="info-and-pagination justify-content-between mt20 row">
+            <div class="align-items-center info-and-pagination justify-content-between mt20 row">
                 <div class="col info">More than > 145230436 transactions found (showing the last 500k records)</div>
                 <vue-pagination class=col-auto></vue-pagination>
             </div>

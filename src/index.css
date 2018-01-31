@@ -4,6 +4,10 @@ body {
     font-size: 13px;
 }
 
+dl, ol, ul {
+    margin: 0;
+}
+
 label {
     font-weight: normal;
 }

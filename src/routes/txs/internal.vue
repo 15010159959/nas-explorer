@@ -22,8 +22,8 @@
     <div class=vue-txs-internal v-bind:triggerComputed=urlChange>
         <vue-bread v-bind:arr=breadcrumb title="Contract Internal Transactions"></vue-bread>
 
-        <div class=container>
-            <div class="info-and-pagination justify-content-between mt20 row">
+        <div class="container mt20">
+            <div class="align-items-center info-and-pagination justify-content-between row">
                 <div class="col info">
                     <div>A Total Of %1 Internal Transactions found</div>
                     <div>

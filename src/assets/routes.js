@@ -32,4 +32,3 @@ module.exports = [{
     name: 404,
     path: "*",
 }];
-

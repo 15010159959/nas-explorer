@@ -63,11 +63,15 @@
             <!--    Transactions
                 ============================================================ -->
             <div class=tab v-show="tab == 1">
-                <div class=title>
-                    <span class="c333 fa fa-sort-by-attributes-alt" aria-hidden="true"></span>
-                    Latest %1 txns from a total Of
-                    <a href="txs.html">%2</a>
-                    <a class="btn btn-default pull-right" href="txs.html?id=%id-from-url" role="button">View All</a>>
+                <div class="align-items-center justify-content-between row title">
+                    <div class=col>
+                        <span class="c333 fa fa-sort-amount-desc" aria-hidden="true"></span>
+                        Latest %1 txns from a total Of
+                        <a href="txs.html">%2</a>
+                    </div>
+                    <div class=col-auto>
+                        <a class="btn btn-link" href="txs.html?id=%id-from-url" role=button>View All</a>
+                    </div>
                 </div>
 
                 <table class="mt20 table">
@@ -104,11 +108,15 @@
             <!--    Mined Blocks
                 ============================================================ -->
             <div class=tab v-show="tab == 2">
-                <div class=title>
-                    <span class="c333 fa fa-sort-by-attributes-alt" aria-hidden="true"></span>
-                    Latest %1 blocks (From a total of
-                    <a href="blocks.html?m=%id-from-url">%2</a> with %3 mined)
-                    <a class="btn btn-default pull-right" href="blocks.html?id=%id-from-url" role="button">View All</a>
+                <div class="align-items-center justify-content-between row title">
+                    <div class=col>
+                        <span class="c333 fa fa-sort-amount-desc" aria-hidden=true></span>
+                        Latest %1 blocks (From a total of
+                        <a href="blocks.html?m=%id-from-url">%2</a> with %3 mined)
+                    </div>
+                    <div class=col-auto>
+                        <a class="btn btn-link" href="blocks.html?id=%id-from-url" role=button>View All</a>
+                    </div>
                 </div>
 
                 <table class="mt20 table">
@@ -137,11 +145,15 @@
             <!--    Mined Uncles
                 ============================================================ -->
             <!-- <div class=tab v-show="tab == 3">
-                <div class=title>
-                    <span class="c333 fa fa-sort-by-attributes-alt" aria-hidden="true"></span>
-                    Latest %1 uncles (From a total of
-                    <a href="uncles.html?id=%id-from-url">%2</a> with %3 mined)
-                    <a class="btn btn-default pull-right" href="uncles.html?id=%id-from-url" role="button">View All</a>
+                <div class="align-items-center justify-content-between row title">
+                    <div class=col>
+                        <span class="c333 fa fa-sort-amount-desc" aria-hidden="true"></span>
+                        Latest %1 uncles (From a total of
+                        <a href="uncles.html?id=%id-from-url">%2</a> with %3 mined)
+                    </div>
+                    <div class=col-auto>
+                        <a class="btn btn-link" href="uncles.html?id=%id-from-url" role=button>View All</a>
+                    </div>
                 </div>
 
                 <table class="mt20 table">
