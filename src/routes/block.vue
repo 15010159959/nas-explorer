@@ -51,8 +51,6 @@
                     <td>Transactions</td>
                     <td>
                         <a href="txs.html?block=%Block">274 transactions</a>
-                        and
-                        <a href="txsInternal.html?block=%Block"> 10 contract internal transactions</a>
                         in this block
                     </td>
                 </tr>
@@ -66,30 +64,13 @@
                         <a href="#">0x50780c99ac0b066b95340554c63045970e5b863776a2a0e4ab3e925c0e85d5a6</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>Sha3Uncles</td>
-                    <td>
-                        0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347
-                    </td>
-                </tr>
+                
                 <tr>
                     <td>Mined By</td>
                     <td>
                         <a href="address.html?mined">0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5</a>
-                        (Nanopool) in 29 secs
+                        (Nanopool) 
                     </td>
-                </tr>
-                <tr>
-                    <td>Difficulty</td>
-                    <td>2,381,548,271,824,879</td>
-                </tr>
-                <tr>
-                    <td>Total Difficulty</td>
-                    <td>2,174,949,865,886,041,068,523</td>
-                </tr>
-                <tr>
-                    <td>Size</td>
-                    <td>35779 bytes</td>
                 </tr>
                 <tr>
                     <td>Gas Used</td>
@@ -109,22 +90,10 @@
                         3.27657259285203186 Ether (3 + 0.27657259285203186)
                     </td>
                 </tr>
-                <tr>
-                    <td>Uncles Reward</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Extra Data</td>
-                    <td>nanopool.org (Hex:0x6e616e6f706f6f6c2e6f7267)
-                    </td>
-                </tr>
 
             </table>
         </div>
 
-        <div class="mt20 tab" v-show="tab == 2">
-            <h2>this is comment</h2>
-        </div>
     </div>
 </template>
 <script>
@@ -147,8 +116,16 @@
             return {
                 block: {},
                 tab: 0,
-                tabButtons: ["Overview", "Comments"]
+                tabButtons: ["Overview"]
             };
+        },
+        mounted() {
+            api.getBlock("latest", o => {
+                this.blocks = o;
+            }, xhr => {
+                console.log(xhr);
+
+            });
         }
     };
 </script>
