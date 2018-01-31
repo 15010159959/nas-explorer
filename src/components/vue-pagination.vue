@@ -13,34 +13,34 @@
 <template>
     <nav class=vue-pagination aria-label="Page navigation">
         <ul class=pagination v-bind:class='{ "justify-content-end": right }'>
-            <li v-if="current == 1" class="disabled page-item">
-                <a class=page-link href=# tabindex=-1 aria-label="First">
+            <li v-if="current > 1" class=page-item>
+                <a class=page-link href=# aria-label=First v-on:click.prevent="$emit('first')">
                     <span aria-hidden=true>&laquo;</span>
-                    <span class="sr-only">First</span>
+                    <span class=sr-only>First</span>
                 </a>
             </li>
-            <li v-else class=page-item>
-                <a class=page-link href=# aria-label="First" v-on:click.prevent="$emit('first')">
+            <li v-else class="disabled page-item">
+                <a class=page-link href=# tabindex=-1 aria-label=First>
                     <span aria-hidden=true>&laquo;</span>
-                    <span class="sr-only">First</span>
+                    <span class=sr-only>First</span>
                 </a>
             </li>
 
-            <li v-if="current == 1" class="disabled page-item">
-                <a class=page-link href=# tabindex=-1 aria-label="Previous">
+            <li v-if="current > 1" class=page-item>
+                <a class=page-link href=# aria-label=Previous v-on:click.prevent="$emit('prev')">
                     <span aria-hidden=true>&lt;</span>
-                    <span class="sr-only">Previous</span>
+                    <span class=sr-only>Previous</span>
                 </a>
             </li>
-            <li v-else class=page-item>
-                <a class=page-link href=# aria-label="Previous" v-on:click.prevent="$emit('prev')">
+            <li v-else class="disabled page-item">
+                <a class=page-link href=# tabindex=-1 aria-label=Previous>
                     <span aria-hidden=true>&lt;</span>
-                    <span class="sr-only">Previous</span>
+                    <span class=sr-only>Previous</span>
                 </a>
             </li>
 
             <li class="page-item disabled">
-                <a class=page-link href=# tabindex="-1">
+                <a class=page-link href=# tabindex=-1>
                     Page
                     <b>{{ current }}</b> of
                     <b>{{ total }}</b>
@@ -48,28 +48,28 @@
             </li>
 
             <li v-if="current == total" class="disabled page-item">
-                <a class=page-link href=# tabindex=-1 aria-label="Next">
+                <a class=page-link href=# tabindex=-1 aria-label=Next>
                     <span aria-hidden=true>&gt;</span>
-                    <span class="sr-only">Next</span>
+                    <span class=sr-only>Next</span>
                 </a>
             </li>
             <li v-else class=page-item>
-                <a class=page-link href=# aria-label="Next" v-on:click.prevent="$emit('next')">
+                <a class=page-link href=# aria-label=Next v-on:click.prevent="$emit('next')">
                     <span aria-hidden=true>&gt;</span>
-                    <span class="sr-only">Next</span>
+                    <span class=sr-only>Next</span>
                 </a>
             </li>
 
             <li v-if="current == total" class="disabled page-item">
-                <a class=page-link href=# tabindex=-1 aria-label="Last">
+                <a class=page-link href=# tabindex=-1 aria-label=Last>
                     <span aria-hidden=true>&raquo;</span>
-                    <span class="sr-only">Last</span>
+                    <span class=sr-only>Last</span>
                 </a>
             </li>
             <li v-else class=page-item>
-                <a class=page-link href=# aria-label="Last" v-on:click.prevent="$emit('last')">
+                <a class=page-link href=# aria-label=Last v-on:click.prevent="$emit('last')">
                     <span aria-hidden=true>&raquo;</span>
-                    <span class="sr-only">Last</span>
+                    <span class=sr-only>Last</span>
                 </a>
             </li>
         </ul>
