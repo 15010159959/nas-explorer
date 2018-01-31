@@ -24,8 +24,8 @@ module.exports = {
         }, fail);
     },
 
-    getBlacks(height, done, fail) {
-        ajax1("black", { height }, function (s, xhr) {
+    getBlockById(id, done, fail) {
+        ajax1("block/" + id, null, function (s, xhr) {
             var o = JSON.parse(s);
 
             if (o.code == 0)
@@ -34,9 +34,6 @@ module.exports = {
                 fail(xhr);
         }, fail);
     }
-
-
-
 };
 
 // 网址加前缀 http://192.168.1.168:8080/api/

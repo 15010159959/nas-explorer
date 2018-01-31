@@ -18,14 +18,8 @@ module.exports = {
 // ajax.all, 重试
 function ajax(action, args, done, fail) {
     var a = ajaxSplitAction(action), i,
-        authorization,
         method = a[0], url = a[1],
         xhr = new XMLHttpRequest();
-
-    if (args.authorization) {
-        authorization = args.authorization;
-        args.authorization = undefined;
-    }
 
     if (method == "get") {
         url += url.indexOf("?") == -1 ? "?" : "&";
@@ -35,8 +29,6 @@ function ajax(action, args, done, fail) {
     }
 
     xhr.open(method, url);
-    authorization && xhr.setRequestHeader("authorization", authorization);
-
     xhr.onload = function (e) {
         if (this.status < 300)
             typeof done == "function" && done(this.response, e);

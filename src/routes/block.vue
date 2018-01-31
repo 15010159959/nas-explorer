@@ -17,8 +17,8 @@
     <!-- https://etherscan.io/block/4951841 -->
     <div class="container vue-block" v-bind:triggerComputed=urlChange>
         <vue-tab-buttons class=mt20 v-bind:arr=tabButtons v-bind:tab.sync=tab></vue-tab-buttons>
-
-        <div class="mt20 tab" v-show="tab == 1">
+        <div class=mt20></div>
+        <div class=tab v-show="tab == 1">
             <h4>Block Information</h4>
             <table class="table">
                 <tr>
@@ -64,12 +64,12 @@
                         <a href="#">0x50780c99ac0b066b95340554c63045970e5b863776a2a0e4ab3e925c0e85d5a6</a>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td>Mined By</td>
                     <td>
                         <a href="address.html?mined">0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5</a>
-                        (Nanopool) 
+                        (Nanopool)
                     </td>
                 </tr>
                 <tr>
@@ -107,9 +107,13 @@
             urlChange() {
                 console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);
 
-                // api.getShowcases(this.$root.apiLang, t => {
-                //     this.arr = t;
-                // });
+
+                api.getBlockById(this.$route.params.id, o => {
+                    this.block = o;
+                }, xhr => {
+                    console.log(xhr);
+
+                });
             }
         },
         data() {
@@ -118,14 +122,6 @@
                 tab: 0,
                 tabButtons: ["Overview"]
             };
-        },
-        mounted() {
-            api.getBlock("latest", o => {
-                this.blocks = o;
-            }, xhr => {
-                console.log(xhr);
-
-            });
         }
     };
 </script>
