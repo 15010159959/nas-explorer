@@ -5,43 +5,36 @@
 
         <div class=container>
             <div class="align-items-center info-and-pagination justify-content-between mt20 row">
-                <div class=col>Showing Block (%1 to %2) out of %3 total blocks</div>
-                <vue-pagination class=col-auto></vue-pagination>
+                <div class=col>Showing Block (#{{ heightFrom }} to #{{ heightTo }}) out of {{ totalBlocks }} total blocks</div>
+                <vue-pagination class=col-auto v-bind:current=pageCurrent v-bind:total=pageTotal v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
             </div>
-
             <table class="mt20 table">
                 <tr>
                     <th>Height</th>
                     <th>Age</th>
                     <th>txn</th>
-                    <th>Uncles</th>
                     <th>Miner</th>
                     <th>GasUsed</th>
                     <th>GasLimit</th>
                     <th>Avg.GasPrice</th>
-                    <th>Reward</th>
                 </tr>
-
-                <tr>
+                <tr v-for="o in arr">
                     <td>
-                        <a href="block.html?id=%Block">%Height</a>
+                        <router-link v-bind:to='"/block/" + o.miner.id'>{{ o.height }}</router-link>
                     </td>
-                    <td>%Age</td>
+                    <td>{{ o.timestamp }}</td>
                     <td>
-                        <a href="txs.html?block=%Block">%txn</a>
+                        <router-link v-bind:to='"/"'>{{ o.txnCnt }}</router-link>
                     </td>
-                    <td>%Uncles</td>
                     <td>
-                        <a href="address.html?id=%Address">%Miner</a>
+                        <router-link v-bind:to='"/address/" + o.miner.alias'>{{ o.miner.alias }}</router-link>
                     </td>
-                    <td>%GasUsed</td>
-                    <td>%GasLimit</td>
-                    <td>%Avg.GasPrice</td>
-                    <td>%Reward</td>
+                    <td>{{ o.gasUsed }}</td>
+                    <td>{{ o.gasLimit }}</td>
+                    <td>{{ o.avgGasPrice }}</td>
                 </tr>
             </table>
-
-            <vue-pagination right=1></vue-pagination>
+            <vue-pagination v-bind:current=pageCurrent right=1 v-bind:total=pageTotal v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
         </div>
     </div>
 </template>
@@ -55,11 +48,51 @@
         },
         data() {
             return {
+                arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Blocks", to: "" }
-                ]
+                ],
+                heightFrom: 0,
+                heightTo: 0,
+                pageCurrent: 0,
+                pageTotal: 0,
+                totalBlocks: 0
             };
+        },
+        methods: {
+            onFirst() {
+                console.log("onFirst");
+            },
+            onLast() {
+                console.log("onLast");
+
+            },
+            onNext() {
+                console.log("onNext");
+
+            },
+            onPrev() {
+                console.log("onPrev");
+            }
+        },
+        mounted() {
+            api.getBlockAll(o => {
+                console.log(o);
+
+                this.arr = o.data;
+                this.pageCurrent = o.page;
+                this.pageTotal = o.totalPage;
+                this.totalBlocks = o.totalCount;
+
+                if (this.arr.length) {
+                    this.heightFrom = this.arr[0].height;
+                    this.heightTo = this.arr[this.arr.length - 1].height;
+                } else {
+                    this.heightFrom = 0;
+                    this.heightTo = 0;
+                }
+            });
         }
     };
 </script>

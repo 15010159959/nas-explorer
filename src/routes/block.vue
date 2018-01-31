@@ -68,7 +68,7 @@
                 <tr>
                     <td>Mined By</td>
                     <td>
-                        <a href="address.html?mined">{{ block.miner.hash }}</a>
+                        <a href="address.html?mined">{{ block.miner }}</a>
                         (Nanopool)
                     </td>
                 </tr>
@@ -84,10 +84,8 @@
                     <td>Nonce</td>
                     <td>{{ block.nonce }}</td>
                 </tr>
-
             </table>
         </div>
-
     </div>
 </template>
 <script>
@@ -101,12 +99,10 @@
             urlChange() {
                 console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);
 
-
                 api.getBlockById(this.$route.params.id, o => {
                     this.block = o;
                 }, xhr => {
-                    console.log(xhr);
-
+                    this.$router.replace("/404");
                 });
             }
         },

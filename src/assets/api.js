@@ -13,6 +13,17 @@ module.exports = {
         }, fail);
     },
 
+    getBlockAll(done, fail) {
+        ajax1("block", null, function (s, xhr) {
+            var o = JSON.parse(s);
+
+            if (o.code == 0)
+                done(o.data);
+            else
+                fail(xhr);
+        }, fail);
+    },
+
     getTx(type, done, fail) {
         ajax1("tx", { type }, function (s, xhr) {
             var o = JSON.parse(s);
