@@ -226,7 +226,7 @@
                         <li v-for="o in blocks">
                             <div class=list_banner_left>
                                 <p>
-                                    <router-link v-bind:to="/block/ + o.height">{{ o.height }}</router-link>
+                                    <router-link v-bind:to="/block/ + o.height"> block {{ o.height }}</router-link>
                                 </p>
                                 <p class="list_banner_left_p1">{{ o.timestamp }}</p>
                             </div>
