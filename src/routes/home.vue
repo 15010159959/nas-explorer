@@ -184,13 +184,36 @@
         overflow: hidden;
     }
 
-    .vue-home .chart_banner {
-        background-color: #fff;
-        height: 300px;
+    .vue-home #chart{
+            max-width:800px;
+            height:278px;
+        }
+    .vue-home .chart_banner .name,.value{
+        color:black;
+        border-bottom: 1px inset;
+        margin-left: 12px;
+        margin-right: 12px;
     }
-
-    .vue-home .chart_banner div {
-        font-size: 50px;
+    .vue-home .chart_banner .name{
+        font-size: 30px;
+    }
+    .vue-home .chart_banner .value{
+        font-size: 60px;
+    }
+    .vue-home .chart_banner .msg{
+        color: black;
+        font-size:16px; 
+        margin-top: 24px;
+    }
+    .vue-home .chart_banner .msg div{
+        margin-top: 10px;
+    }
+    .vue-home .chart_banner .msg .msg_change_right{
+        float: right;
+        margin-right: 10px;
+    }
+    .vue-home .chart_banner .msg .msg_change_left{
+        margin-left: 10px;
     }
 
     .vue-home text.highcharts-credits {
@@ -207,24 +230,22 @@
                 </div>
                 <div class="col-md-4">
                     <div class="chart_banner">
-                        <div>NAS</div>
-                        <div>$66.66666</div>
-                        <span class="msg">
-                            <tr>
-                                <td>24h Change : </td>
-                                <td>0%</td>
-                            </tr>
-                            </br>
-                            <tr>
-                                <td>24h Volume :</td>
-                                <td>$1238553218.123546</td>
-                            </tr>
-                            </br>
-                            <tr>
-                                <td>Market Cap :</td>
-                                <td>$154542132</td>
-                            </tr>
-                        </span>
+                        <div class="name">NAS</div>
+                        <div class="value">$66.66</div>
+                        <div class="msg">
+                            <div class="msg_change">
+                                <span class="msg_change_left">24h Change : </span>
+                                <span class="msg_change_right red">0%</span>
+                            </div>
+                            <div class="msg_volume">
+                                <span class="msg_change_left">24h Volume :</span>
+                                <span class="msg_change_right">$12388.16</span>
+                            </div>
+                            <div class="msg_market">
+                                <span class="msg_change_left">Market Cap :</span>
+                                <span class="msg_change_right">$154542132</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
