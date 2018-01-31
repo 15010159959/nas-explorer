@@ -44,10 +44,6 @@
                     <td>%xxx</td>
                 </tr>
                 <tr>
-                    <td>Ether ETH USD Value:</td>
-                    <td>%xxx</td>
-                </tr>
-                <tr>
                     <td>Mined:</td>
                     <td>%xxx</td>
                 </tr>

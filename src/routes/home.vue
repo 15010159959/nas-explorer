@@ -187,35 +187,43 @@
         overflow: hidden;
     }
 
-    .vue-home #chart{
-            max-width:800px;
-            height:278px;
-        }
-    .vue-home .chart_banner .name,.value{
-        color:black;
+    .vue-home #chart {
+        max-width: 800px;
+        height: 278px;
+    }
+
+    .vue-home .chart_banner .name,
+    .value {
+        color: black;
         border-bottom: 1px inset;
         margin-left: 12px;
         margin-right: 12px;
     }
-    .vue-home .chart_banner .name{
+
+    .vue-home .chart_banner .name {
         font-size: 30px;
     }
-    .vue-home .chart_banner .value{
+
+    .vue-home .chart_banner .value {
         font-size: 60px;
     }
-    .vue-home .chart_banner .msg{
+
+    .vue-home .chart_banner .msg {
         color: black;
-        font-size:16px; 
+        font-size: 16px;
         margin-top: 24px;
     }
-    .vue-home .chart_banner .msg div{
+
+    .vue-home .chart_banner .msg div {
         margin-top: 10px;
     }
-    .vue-home .chart_banner .msg .msg_change_right{
+
+    .vue-home .chart_banner .msg .msg_change_right {
         float: right;
         margin-right: 10px;
     }
-    .vue-home .chart_banner .msg .msg_change_left{
+
+    .vue-home .chart_banner .msg .msg_change_left {
         margin-left: 10px;
     }
 
@@ -261,7 +269,7 @@
                             <span class="fa fa-th-large" aria-hidden="true"></span>
                             Blocks
                         </div>
-                        <a class="btn btn-default pull-right" href="txs.html?id=%block" role="button">View All</a>
+                        <router-link class="btn btn-default pull-right" to="/blocks" role="button">View All</router-link>
                     </div>
                     <ul class="list_left">
                         <li v-for="o in blocks">
@@ -289,7 +297,7 @@
                             <span class="fa fa-list" aria-hidden="true"></span>
                             Transation
                         </div>
-                        <a class="btn btn-default pull-right" href="txs.html?id=%txs" role="button">View All</a>
+                        <router-link class="btn btn-default pull-right" to="/txs" role="button">View All</router-link>
                     </div>
                     <ul class="list_right ">
                         <li v-for="o in txs">
@@ -302,8 +310,10 @@
                                     <router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
                                 </p>
                                 <p>
-                                    From <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
-                                    To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
+                                    From
+                                    <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
+                                    To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
                                 </p>
                                 <p>Amount 0 Ether</p>
                             </div>
