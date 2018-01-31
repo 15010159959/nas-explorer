@@ -160,6 +160,9 @@
         left: 34%;
         top: 12%;
         padding-top: 3%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
     }
 
     .vue-home .list_right_banner_left {
@@ -179,7 +182,7 @@
     }
 
     .vue-home .list_right_banner_right p {
-        width: 80%;
+        width: 88%;
         text-overflow: ellipsis;
         overflow: hidden;
     }
@@ -299,10 +302,8 @@
                                     <router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
                                 </p>
                                 <p>
-                                    From
-                                    <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
-                                    To
-                                    <router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
+                                    From <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
+                                    To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
                                 </p>
                                 <p>Amount 0 Ether</p>
                             </div>
