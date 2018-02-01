@@ -286,7 +286,7 @@
                                     <a href="txs.html?id=%Block">
                                         <b>{{ o.txnCnt }}</b>
                                     </a>
-                                    in 5 secs</p>
+                                    transations</p>
                             </div>
                         </li>
                     </ul>
