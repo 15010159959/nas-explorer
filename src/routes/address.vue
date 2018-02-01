@@ -24,15 +24,15 @@
     }
 </style>
 <template>
-    <div class=vue-address>
-        <!-- https://etherscan.io/address/0xea674fdde714fd979de3edf0f56aa9716b898ec8 -->
+    <!-- https://etherscan.io/address/0xea674fdde714fd979de3edf0f56aa9716b898ec8 -->
+    <div class=vue-address v-bind:triggerComputed=urlChange>
         <vue-bread v-bind:arr=breadcrumb v-bind:title='"Address " + $route.params.id'></vue-bread>
         <div class=container>
             <table class="c333 table">
                 <tr>
                     <th>
                         Overview
-                        <span class=c777> | Ethermine</span>
+                        <span class=c777> | %from</span>
                     </th>
                     <th class=text-right>
                         * uncomment this img tag
@@ -66,7 +66,7 @@
                         <a href="txs.html">%2</a>
                     </div>
                     <div class=col-auto>
-                        <a class="btn btn-link" href="txs.html?id=%id-from-url" role=button>View All</a>
+                        <router-link class="btn btn-link" v-bind:to='"/txs?a=" + $route.params.id'>View All</router-link>
                     </div>
                 </div>
 
@@ -82,21 +82,21 @@
                         <th class="txfee">[TxFee]</th>
                     </tr>
 
-                    <tr>
-                        <td>
-                            <a href="tx.html?id=%TxHash">%TxHash</a>
+                    <tr v-for="o in txs">
+                        <td class=tdawddd>
+                            <router-link v-bind:to='"/tx/" + $route.params.id'>{{ o.hash }}</router-link>
                         </td>
                         <td>
-                            <a href="block.html?id=%Block">%Block</a>
+                            <router-link v-bind:to='"/block/" + o.blockHeight'>{{ o.blockHeight }}</router-link>
                         </td>
-                        <td>%Age</td>
+                        <td>{{ o.timestamp }}</td>
                         <td>%From</td>
                         <td class="out text-uppercase"></td>
-                        <td>
-                            <a href="address.html?id=%To">%To</a>
+                        <td class=tdawddd>
+                            <router-link v-bind:to='"/address/" + o.to'>{{ o.to }}</router-link>
                         </td>
-                        <td>%Value</td>
-                        <td class="txfee">%TxFee</td>
+                        <td>{{ o.value }}</td>
+                        <td class="txfee">{{ o.txFee }}</td>
                     </tr>
                 </table>
             </div>
@@ -111,7 +111,7 @@
                         <a href="blocks.html?m=%id-from-url">%2</a> with %3 mined)
                     </div>
                     <div class=col-auto>
-                        <a class="btn btn-link" href="blocks.html?id=%id-from-url" role=button>View All</a>
+                        <router-link class="btn btn-link" v-bind:to='"/blocks?m=" + $route.params.id'>View All</router-link>
                     </div>
                 </div>
 
@@ -148,7 +148,7 @@
                         <a href="uncles.html?id=%id-from-url">%2</a> with %3 mined)
                     </div>
                     <div class=col-auto>
-                        <a class="btn btn-link" href="uncles.html?id=%id-from-url" role=button>View All</a>
+                        <router-link class="btn btn-link" v-bind:to='"/uncles?m=" + $route.params.id'>View All</router-link>
                     </div>
                 </div>
 
@@ -189,15 +189,29 @@
             "vue-pagination": require("@/components/vue-pagination").default,
             "vue-tab-buttons": require("@/components/vue-tab-buttons").default
         },
+        computed: {
+            urlChange() {
+                console.log("在这里下载 address 信息, 目前的 address id 是", this.$route.params.id);
+
+                api.getAddress(this.$route.params.id, o => {
+                    console.log(o);
+                    this.obj = o;
+                    this.txs = o.txList;
+                }, xhr => {
+                    this.$router.replace("/404");
+                });
+            }
+        },
         data() {
             return {
                 breadcrumb: [
                     { text: "Home", to: "/" },
-                    { text: "Normal Accounts", to: "accounts" },
+                    { text: "Normal Accounts", to: "/accounts" },
                     { text: "Address", to: "" }
                 ],
                 tab: 0,
-                tabButtons: ["Transactions", "Mined Blocks"]
+                tabButtons: ["Transactions", "Mined Blocks"],
+                txs: []
             };
         }
     };

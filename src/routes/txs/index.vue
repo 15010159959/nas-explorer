@@ -12,15 +12,6 @@
         border-top-color: #ddd;
     }
 
-    .vue-txs td>a,
-    .vue-txs th>a {
-        display: inline-block;
-        max-width: 160px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        vertical-align: top;
-    }
-
     .vue-txs .fa-arrow-right {
         color: darkgreen;
     }
@@ -65,20 +56,20 @@
                 </tr>
 
                 <tr v-for="o in arr">
-                    <td>
+                    <td class=tdawddd>
                         <router-link v-bind:to='"/tx/" + o.hash'>{{ o.hash }}</router-link>
                     </td>
                     <td>
                         <router-link v-bind:to='"/block/" + o.block.height'>{{ o.block.height }}</router-link>
                     </td>
                     <td>{{ o.timestamp }}</td>
-                    <td>
+                    <td class=tdawddd>
                         <router-link v-bind:to='"/address/" + o.from.hash'>{{ o.from.hash }}</router-link>
                     </td>
                     <td>
                         <span class="fa fa-arrow-right" aria-hidden=true></span>
                     </td>
-                    <td>
+                    <td class=tdawddd>
                         <router-link v-bind:to='"/address/" + o.to.hash'>{{ o.to.hash }}</router-link>
                     </td>
                     <td>{{ o.value }}</td>
@@ -101,28 +92,31 @@
         data() {
             return {
                 ajaxing: false,
+                ajaxParam: {},
                 arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Transactions", to: "" }
                 ],
                 currentPage: 0,
-                totalPage: 1, // 为了允许 mounted 调用 nthTxPage
+                totalPage: 1, // 为了允许 mounted 调用 changePage
                 totalTxs: 0
             };
         },
         methods: {
-            nthTxPage(p) {
+            changePage() {
+                var p = this.ajaxParam.p;
+
                 if (p)
                     if (0 < p && p < this.totalPage + 1)
                         if (p == this.currentPage)
-                            console.log("nthTxPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                            console.log("changePage - 请求的第", p, "页正是当前页, 忽略此次调用");
                         else if (this.ajaxing)
-                            console.log("nthTxPage - 上一个 ajax 还未返回, 忽略此次调用");
+                            console.log("changePage - 上一个 ajax 还未返回, 忽略此次调用");
                         else {
                             this.ajaxing = true;
 
-                            api.getTx({ p }, o => {
+                            api.getTx(this.ajaxParam, o => {
                                 this.ajaxing = false;
                                 this.arr = o.txnList;
                                 this.currentPage = o.currentPage;
@@ -135,26 +129,36 @@
                             });
                         }
                     else
-                        console.log("nthTxPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                        console.log("changePage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
                 else
-                    console.log("nthTxPage - 无效的 p", p, ", 忽略此次调用");
+                    console.log("changePage - 无效的 p", p, ", 忽略此次调用");
             },
             onFirst() {
-                this.nthTxPage(1);
+                this.ajaxParam.p = 1;
+                this.changePage();
             },
             onLast() {
-                this.nthTxPage(this.totalPage);
+                this.ajaxParam.p = this.totalPage;
+                this.changePage();
             },
             onNext() {
-                this.nthTxPage(this.currentPage + 1);
+                this.ajaxParam.p = this.currentPage + 1;
+                this.changePage();
             },
             onPrev() {
-                this.nthTxPage(this.currentPage - 1);
+                this.ajaxParam.p = this.currentPage - 1;
+                this.changePage();
             }
         },
         mounted() {
             console.log("根据 url 参数决定怎么做", this.$route.query);
-            this.nthTxPage(1);
+
+            this.ajaxParam = {
+                a: this.$route.query.a,
+                p: 1
+            };
+
+            this.changePage();
             this.totalPage = 0;
         }
     };

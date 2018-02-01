@@ -13,6 +13,14 @@ dl, ol, ul {
 .c777   { color: #777; }
 .mt20   { margin-top: 20px; }
 
+.tdawddd > a {
+    display: inline-block;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
 /*  font awesome
     ============================================================ */
 

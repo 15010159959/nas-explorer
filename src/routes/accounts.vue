@@ -6,11 +6,11 @@
         <div class="container mt20">
             <div class="align-items-center info-and-pagination justify-content-between row">
                 <div class=col>
-                    A total of %(more than > 1999999) accounts found (%1 Ether)
+                    A total of {{ totalAccounts }} accounts found ( {{ totalBalance }} )
                     <br>
-                    <em>Displaying the last %2 records only</em>
+                    <!-- <em>Displaying the last %2 records only</em> -->
                 </div>
-                <vue-pagination class=col-auto></vue-pagination>
+                <vue-pagination class=col-auto v-bind:current=currentPage v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
             </div>
 
             <table class="mt20 table">
@@ -21,27 +21,18 @@
                     <th>Percentage</th>
                     <th>TxCount</th>
                 </tr>
-                <tr>
-                    <td>%Rank</td>
+                <tr v-for="o in arr">
+                    <td>{{ o.rank }}</td>
                     <td>
-                        <a href="address.html?id=%Address">%Address</a>
+                        <router-link v-bind:to='"/address/" + o.hash'>{{ o.hash }}</router-link>
+                        <span v-show=o.alias> | {{ o.alias }}</span>
                     </td>
-                    <td>%Balance</td>
-                    <td>%Percentage</td>
-                    <td>%TxCount</td>
-                </tr>
-                <tr>
-                    <td>%Rank</td>
-                    <td>
-                        <a href="address.html?id=%Address">%Address</a>
-                        <span> | whatever</span>
-                    </td>
-                    <td>%Balance</td>
-                    <td>%Percentage</td>
-                    <td>%TxCount</td>
+                    <td>{{ o.balance }}</td>
+                    <td>{{ o.percentage }}</td>
+                    <td>{{ o.txCnt }}</td>
                 </tr>
             </table>
-            <vue-pagination right=1></vue-pagination>
+            <vue-pagination v-bind:current=currentPage right=1 v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
         </div>
     </div>
 </template>
@@ -55,15 +46,72 @@
         },
         data() {
             return {
+                ajaxing: false,
                 arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Accounts", to: "" }
-                ]
+                ],
+                currentPage: 0,
+                totalAccounts: 0,
+                totalBalance: 0,
+                totalPage: 1 // 为了允许 mounted 调用 nthTxPage
             };
         },
-        mounted() {
+        methods: {
+            nthTxPage(p) {
+                if (p)
+                    if (0 < p && p < this.totalPage + 1)
+                        if (p == this.currentPage)
+                            console.log("nthTxPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                        else if (this.ajaxing)
+                            console.log("nthTxPage - 上一个 ajax 还未返回, 忽略此次调用");
+                        else {
+                            this.ajaxing = true;
 
+                            api.getAccount(p, o => {
+                                console.log(o);
+                                this.ajaxing = false;
+                                this.arr = o.addressList;
+                                this.currentPage = o.page;
+                                this.totalAccounts = o.totalAccountsCnt;
+                                this.totalBalance = o.totalBalance;
+                                this.totalPage = o.totalPage;
+
+                                if (this.arr.length) {
+                                    this.heightFrom = this.arr[0].height;
+                                    this.heightTo = this.arr[this.arr.length - 1].height;
+                                } else {
+                                    this.heightFrom = 0;
+                                    this.heightTo = 0;
+                                }
+                            }, xhr => {
+                                console.log(xhr);
+                                // this.ajaxing = false; // 由于跳转了所以不需要修改 ajaxing
+                                this.$router.replace("/404");
+                            });
+                        }
+                    else
+                        console.log("nthTxPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                else
+                    console.log("nthTxPage - 无效的 p", p, ", 忽略此次调用");
+            },
+            onFirst() {
+                this.nthTxPage(1);
+            },
+            onLast() {
+                this.nthTxPage(this.totalPage);
+            },
+            onNext() {
+                this.nthTxPage(this.currentPage + 1);
+            },
+            onPrev() {
+                this.nthTxPage(this.currentPage - 1);
+            }
+        },
+        mounted() {
+            this.nthTxPage(1);
+            this.totalPage = 0;
         }
     };
 </script>
