@@ -2,39 +2,27 @@
 var { ajax, ajaxSplitAction } = require("@/assets/utility");
 
 module.exports = {
-    getBlock(type, done, fail) {
-        ajax1("block", { type }, function (s, xhr) {
+    // get api/block
+    // get api/block?type=latest        目前 type 只有 latest
+    // get api/block/:id
+    getBlock(t, done, fail) {
+        // wtf - webpack 对 if (typeof t == "object") 报异常
+        if (eval('typeof t == "object"'))
+            ajax1("block", t, d, fail);
+        else
+            ajax1("block/" + t, null, d, fail);
+
+        function d(s, xhr) {
             var o = JSON.parse(s);
 
             if (o.code == 0)
                 done(o.data);
-            else
+            else if (typeof fail == "function")
                 fail(xhr);
-        }, fail);
+        }
     },
 
-    getBlockAll(done, fail) {
-        ajax1("block", null, function (s, xhr) {
-            var o = JSON.parse(s);
-
-            if (o.code == 0)
-                done(o.data);
-            else
-                fail(xhr);
-        }, fail);
-    },
-
-    getTx(type, done, fail) {
-        ajax1("tx", { type }, function (s, xhr) {
-            var o = JSON.parse(s);
-
-            if (o.code == 0)
-                done(o.data);
-            else
-                fail(xhr);
-        }, fail);
-    },
-
+    // get api/market_cap
     getMarket(market_cap, done, fail) {
         ajax1(market_cap, null, function (s, xhr) {
             var o = JSON.parse(s);
@@ -46,27 +34,31 @@ module.exports = {
         }, fail);
     },
 
-    getBlockById(id, done, fail) {
-        ajax1("block/" + id, null, function (s, xhr) {
+    // get api/tx
+    // get api/tx?type=latest        目前 type 只有 latest
+    // get api/tx/:id
+    getTx(t, done, fail) {
+        // wtf - webpack 对 if (typeof t == "object") 报异常
+        if (eval('typeof t == "object"'))
+            ajax1("tx", t, d, fail);
+        else
+            ajax1("tx/" + t, null, d, fail);
+
+        function d(s, xhr) {
             var o = JSON.parse(s);
 
             if (o.code == 0)
                 done(o.data);
-            else
+            else if (typeof fail == "function")
                 fail(xhr);
-        }, fail);
+        }
     },
 
-    getTxByHash(id, done, fail) {
-        ajax1("tx/" + id, null, function (s, xhr) {
-            var o = JSON.parse(s);
 
-            if (o.code == 0)
-                done(o.data);
-            else
-                fail(xhr);
-        }, fail);
-    }
+
+
+
+
 };
 
 // 网址加前缀 http://192.168.1.168:8080/api/

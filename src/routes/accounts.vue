@@ -55,11 +55,15 @@
         },
         data() {
             return {
+                arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Accounts", to: "" }
                 ]
             };
+        },
+        mounted() {
+
         }
     };
 </script>

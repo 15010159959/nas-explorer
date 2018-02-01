@@ -77,7 +77,7 @@
             }
         },
         mounted() {
-            api.getBlockAll(o => {
+            api.getBlock(null, o => {
                 console.log(o);
 
                 this.arr = o.data;

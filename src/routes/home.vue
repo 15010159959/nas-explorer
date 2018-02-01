@@ -332,7 +332,7 @@
             return {
                 blocks: [],
                 txs: [],
-                market:[]
+                market: []
             };
         },
         methods: {
@@ -388,14 +388,14 @@
 
             this.setUpChart();
 
-            api.getBlock("latest", o => {
+            api.getBlock({ type: "latest" }, o => {
                 this.blocks = o;
             }, xhr => {
                 console.log(xhr);
 
             });
 
-            api.getTx("latest", o => {
+            api.getTx({ type: "latest" }, o => {
                 this.txs = o;
             }, xhr => {
                 console.log(xhr);
