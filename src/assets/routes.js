@@ -25,12 +25,12 @@ module.exports = [{
     path: "/txs"
 },
 // {
-//     component: require("@/routes/txs/internal").default,
+//     component: require("@/routes/txs-internal").default,
 //     meta: { headerActive: 2 },
 //     path: "/txs/internal/:id"
 // },
 {
-    component: require("@/routes/txs/pending").default,
+    component: require("@/routes/txs-pending").default,
     meta: { headerActive: 2 },
     path: "/txs/pending"
 }, {
