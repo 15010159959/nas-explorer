@@ -332,9 +332,9 @@
         data() {
             return {
                 blocks: [],
-                txs: [],
-                market:[],
-                static:[]
+                market: [],
+                static: [],
+                txs: []
             };
         },
         methods: {
@@ -390,14 +390,14 @@
 
             this.setUpChart();
 
-            api.getBlock("latest", o => {
+            api.getBlock({ type: "latest" }, o => {
                 this.blocks = o;
             }, xhr => {
                 console.log(xhr);
 
             });
 
-            api.getTx("latest", o => {
+            api.getTx({ type: "latest" }, o => {
                 this.txs = o;
             }, xhr => {
                 console.log(xhr);
@@ -411,7 +411,7 @@
 
             });
 
-            api.getStatic("", o => {
+            api.getTx("cnt_static", o => {
                 this.static = o;
                 console.log(o);
             }, xhr => {

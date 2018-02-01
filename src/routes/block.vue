@@ -99,7 +99,7 @@
             urlChange() {
                 console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);
 
-                api.getBlockById(this.$route.params.id, o => {
+                api.getBlock(this.$route.params.id, o => {
                     this.block = o;
                 }, xhr => {
                     this.$router.replace("/404");

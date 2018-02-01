@@ -26,15 +26,15 @@
 <template>
     <div class=vue-address>
         <!-- https://etherscan.io/address/0xea674fdde714fd979de3edf0f56aa9716b898ec8 -->
-        <vue-bread v-bind:arr=breadcrumb title="Address %Address"></vue-bread>
+        <vue-bread v-bind:arr=breadcrumb v-bind:title='"Address " + $route.params.id'></vue-bread>
         <div class=container>
             <table class="c333 table">
                 <tr>
                     <th>
                         Overview
-                        <span class="c777"> | Ethermine</span>
+                        <span class=c777> | Ethermine</span>
                     </th>
-                    <th class="text-right">
+                    <th class=text-right>
                         * uncomment this img tag
                         <!-- <img src=%qrcode> -->
                     </th>
