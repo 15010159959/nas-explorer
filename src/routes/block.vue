@@ -68,7 +68,7 @@
                 <tr>
                     <td>Mined By</td>
                     <td>
-                        <a href="address.html?mined">{{ block.miner }}</a>
+                        <a href="address.html?mined">{{ block.miner.hash }}</a>
                         (Nanopool)
                     </td>
                 </tr>
