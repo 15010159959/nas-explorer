@@ -242,19 +242,19 @@
                 <div class="col-md-4">
                     <div class="chart_banner">
                         <div class="name">NAS</div>
-                        <div class="value">$66.66</div>
+                        <div class="value">$ {{ market.price }}</div>
                         <div class="msg">
                             <div class="msg_change">
                                 <span class="msg_change_left">24h Change : </span>
-                                <span class="msg_change_right red">0%</span>
+                                <span class="msg_change_right red">{{ market.change24h }}%</span>
                             </div>
                             <div class="msg_volume">
                                 <span class="msg_change_left">24h Volume :</span>
-                                <span class="msg_change_right">$12388.16</span>
+                                <span class="msg_change_right">$ {{ market.volume24h }}</span>
                             </div>
                             <div class="msg_market">
                                 <span class="msg_change_left">Market Cap :</span>
-                                <span class="msg_change_right">$154542132</span>
+                                <span class="msg_change_right">$ {{ market.marketCap }}</span>
                             </div>
                         </div>
                     </div>
@@ -331,7 +331,8 @@
         data() {
             return {
                 blocks: [],
-                txs: []
+                txs: [],
+                market:[]
             };
         },
         methods: {
@@ -396,6 +397,13 @@
 
             api.getTx("latest", o => {
                 this.txs = o;
+            }, xhr => {
+                console.log(xhr);
+
+            });
+
+            api.getMarket("market_cap", o => {
+                this.market = o;
             }, xhr => {
                 console.log(xhr);
 

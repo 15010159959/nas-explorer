@@ -35,6 +35,17 @@ module.exports = {
         }, fail);
     },
 
+    getMarket(market_cap, done, fail) {
+        ajax1(market_cap, null, function (s, xhr) {
+            var o = JSON.parse(s);
+
+            if (o.code == 0)
+                done(o.data);
+            else
+                fail(xhr);
+        }, fail);
+    },
+
     getBlockById(id, done, fail) {
         ajax1("block/" + id, null, function (s, xhr) {
             var o = JSON.parse(s);
