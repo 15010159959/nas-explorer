@@ -131,7 +131,6 @@
     }
 
     .vue-home .list_banner_left {
-        /* background-color: gray; */
         background: url(/static/img/block_bg.jpg) center no-repeat;
         width: 30%;
         height: 90px;

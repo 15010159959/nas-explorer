@@ -65,7 +65,7 @@
                         <img src="/static/img/logo.png ">
                     </div>
                     <div class="footer_left_down ">
-                        <p>Explorer is a Block Explorer and Analytics Platform for Ethereum, a decentralized smart contracts platform.</p>
+                        <p>Nebulas is a Block Explorer and Analytics Platform for Ethereum, a decentralized smart contracts platform.</p>
                     </div>
                 </div>
 
