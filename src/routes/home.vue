@@ -331,63 +331,68 @@
         data() {
             return {
                 blocks: [],
+                chartConfig: {
+                    legend: {
+                        align: 'right',
+                        layout: 'vertical',
+                        verticalAlign: 'middle'
+                    },
+                    // plotOptions: {
+                    //     area: {
+                    //         fillColor: {
+                    //             linearGradient: {
+                    //                 x1: 0,
+                    //                 y1: 0,
+                    //                 x2: 0,
+                    //                 y2: 1
+                    //             },
+                    //             stops: [
+                    //                 [0, "#2233ee"],
+                    //                 [1, "#2266ee00"]
+                    //             ]
+                    //         },
+                    //         marker: {
+                    //             radius: 2
+                    //         },
+                    //         lineWidth: 1,
+                    //         states: {
+                    //             hover: {
+                    //                 lineWidth: 1
+                    //             }
+                    //         },
+                    //         threshold: null
+                    //     }
+                    // },
+                    series: [{
+                        data: null,
+                        name: 'transation'
+                        // , type: "area"
+                    }],
+                    subtitle: {
+                        text: '数据来源：Nebulas'
+                    },
+                    title: {
+                        text: 'transations'
+                    },
+                    xAxis: {
+                        labels: {
+                            format: '{value:%m-%d}',
+                            rotation: -30
+                        },
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+                            text: '数量'
+                        }
+                    }
+                },
                 market: [],
-                static: [],
                 txs: []
             };
         },
-        methods: {
-            setUpChart() {
-                var Highcharts = require("highcharts"),
-                    chart = Highcharts.chart('chart', {
-                        title: {
-                            text: 'transations'
-                        },
-                        subtitle: {
-                            text: '数据来源：Nebulas'
-                        },
-                        yAxis: {
-                            title: {
-                                text: '数量'
-                            }
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'middle'
-                        },
-                        plotOptions: {
-                            series: {
-                                label: {
-                                    connectorAllowed: false
-                                },
-                                pointStart: 2010
-                            }
-                        },
-                        series: [{
-                            name: 'transation',
-                            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-                        }],
-                        responsive: {
-                            rules: [{
-                                condition: {
-                                    maxWidth: 500
-                                },
-                                chartOptions: {
-                                    legend: {
-                                        layout: 'horizontal',
-                                        align: 'center',
-                                        verticalAlign: 'bottom'
-                                    }
-                                }
-                            }]
-                        }
-                    });
-            }
-        },
         mounted() {
-
-            this.setUpChart();
+            var vm = this;
 
             api.getBlock({ type: "latest" }, o => {
                 this.blocks = o;
@@ -410,8 +415,18 @@
 
             });
 
-            api.getTx("cnt_static", o => {
-                this.static = o;
+            api.getTx("cnt_static", function (o) {
+                var i, arr = [];
+
+                for (i in o) arr.push([Date.parse(i), o[i]]);
+
+                arr.sort(function (a, b) {
+                    return a[0] - b[0];
+                });
+
+                vm.chartConfig.series[0].data = arr;
+                require("highcharts").chart("chart", vm.chartConfig);
+
                 console.log(o);
             }, xhr => {
                 console.log(xhr);
