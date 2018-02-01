@@ -182,7 +182,7 @@
     }
 
     .vue-home .list_right_banner_right p {
-        width: 88%;
+        width: 89%;
         text-overflow: ellipsis;
         overflow: hidden;
     }
@@ -311,9 +311,9 @@
                                 </p>
                                 <p>
                                     From
-                                    <router-link v-bind:to="/address/ + o.from">{{ o.from }}</router-link>
+                                    <router-link v-bind:to="/address/ + o.from">{{ o.from.hash }}</router-link>
                                     To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <router-link v-bind:to="/block/ + o.to">{{ o.to }} </router-link>
+                                    <router-link v-bind:to="/block/ + o.to">{{ o.to.hash }} </router-link>
                                 </p>
                                 <p>Amount 0 Ether</p>
                             </div>
@@ -331,8 +331,9 @@
         data() {
             return {
                 blocks: [],
-                txs: [],
-                market: []
+                market: [],
+                static: [],
+                txs: []
             };
         },
         methods: {
@@ -404,6 +405,14 @@
 
             api.getMarket("market_cap", o => {
                 this.market = o;
+            }, xhr => {
+                console.log(xhr);
+
+            });
+
+            api.getTx("cnt_static", o => {
+                this.static = o;
+                console.log(o);
             }, xhr => {
                 console.log(xhr);
 

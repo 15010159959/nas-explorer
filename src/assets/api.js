@@ -34,8 +34,9 @@ module.exports = {
         }, fail);
     },
 
-    // get api/tx
-    // get api/tx?type=latest        目前 type 只有 latest
+    // get api/tx               p -页码, 默认 1
+    // get api/tx?type=latest   目前 type 只有 latest
+    // get api/tx/cnt_static
     // get api/tx/:id
     getTx(t, done, fail) {
         // wtf - webpack 对 if (typeof t == "object") 报异常
@@ -53,9 +54,6 @@ module.exports = {
                 fail(xhr);
         }
     },
-
-
-
 
 
 
