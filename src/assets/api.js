@@ -46,6 +46,17 @@ module.exports = {
         }, fail);
     },
 
+    getStatic(tx, done, fail) {
+        ajax1("tx/cnt_static", null, function (s, xhr) {
+            var o = JSON.parse(s);
+
+            if (o.code == 0)
+                done(o.data);
+            else
+                fail(xhr);
+        }, fail);
+    },
+
     getBlockById(id, done, fail) {
         ajax1("block/" + id, null, function (s, xhr) {
             var o = JSON.parse(s);
