@@ -2,9 +2,11 @@
 var { ajax, ajaxSplitAction } = require("@/assets/utility");
 
 module.exports = {
-    // get api/block
-    // get api/block?type=latest        目前 type 只有 latest
-    // get api/block/:id
+    // get api/block?
+    // - p       - 页码, 默认 1
+    // - type    - 目前只有 latest
+    // get api/block/
+    // - <id or hash>
     getBlock(t, done, fail) {
         // wtf - webpack 对 if (typeof t == "object") 报异常
         if (eval('typeof t == "object"'))
@@ -23,8 +25,8 @@ module.exports = {
     },
 
     // get api/market_cap
-    getMarket(market_cap, done, fail) {
-        ajax1(market_cap, null, function (s, xhr) {
+    getMarketCap(done, fail) {
+        ajax1("market_cap", null, function (s, xhr) {
             var o = JSON.parse(s);
 
             if (o.code == 0)
@@ -34,10 +36,12 @@ module.exports = {
         }, fail);
     },
 
-    // get api/tx               p -页码, 默认 1
-    // get api/tx?type=latest   目前 type 只有 latest
-    // get api/tx/cnt_static
-    // get api/tx/:id
+    // get api/tx?
+    // - p       - 页码, 默认 1
+    // - type    - 目前只有 latest
+    // get api/tx/
+    // - cnt_static
+    // - <id or hash>
     getTx(t, done, fail) {
         // wtf - webpack 对 if (typeof t == "object") 报异常
         if (eval('typeof t == "object"'))
