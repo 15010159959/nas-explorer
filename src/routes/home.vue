@@ -403,7 +403,7 @@
 
             });
 
-            api.getMarket("market_cap", o => {
+            api.getMarketCap(o => {
                 this.market = o;
             }, xhr => {
                 console.log(xhr);

@@ -12,6 +12,15 @@
         border-top-color: #ddd;
     }
 
+    .vue-txs td>a,
+    .vue-txs th>a {
+        display: inline-block;
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top;
+    }
+
     .vue-txs .fa-arrow-right {
         color: darkgreen;
     }
@@ -39,8 +48,8 @@
             </div>
 
             <div class="align-items-center info-and-pagination justify-content-between mt20 row">
-                <div class="col info">More than > 145230436 transactions found (showing the last 500k records)</div>
-                <vue-pagination class=col-auto></vue-pagination>
+                <div class="col info">{{ totalTxs }} transactions found</div>
+                <vue-pagination class=col-auto v-bind:current=currentPage v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
             </div>
 
             <table class="mt20 table">
@@ -55,29 +64,29 @@
                     <th>[TxFee]</th>
                 </tr>
 
-                <tr>
-                    <td class=ne>
-                        <a href="block.html?id=%123456">%TxHash</a>
-                    </td>
-                    <td class=ne>%block</td>
+                <tr v-for="o in arr">
                     <td>
-                        <a href="tx.html?id=%ParentTxHash">2 mins ago</a>
+                        <router-link v-bind:to='"/tx/" + o.hash'>{{ o.hash }}</router-link>
                     </td>
                     <td>
-                        <a href="address.html?id=%From">%From</a>
+                        <router-link v-bind:to='"/block/" + o.block.height'>{{ o.block.height }}</router-link>
+                    </td>
+                    <td>{{ o.timestamp }}</td>
+                    <td>
+                        <router-link v-bind:to='"/address/" + o.from.hash'>{{ o.from.hash }}</router-link>
                     </td>
                     <td>
-                        <span class="fa fa-arrow-right" aria-hidden="true"></span>
+                        <span class="fa fa-arrow-right" aria-hidden=true></span>
                     </td>
                     <td>
-                        <a href="address.html?id=%To">%To</a>
+                        <router-link v-bind:to='"/address/" + o.to.hash'>{{ o.to.hash }}</router-link>
                     </td>
-                    <td>%Value</td>
-                    <td>%txFee</td>
+                    <td>{{ o.value }}</td>
+                    <td>{{ o.txFee }}</td>
                 </tr>
             </table>
 
-            <vue-pagination right=1></vue-pagination>
+            <vue-pagination v-bind:current=currentPage right=1 v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
         </div>
     </div>
 </template>
@@ -91,11 +100,62 @@
         },
         data() {
             return {
+                ajaxing: false,
+                arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
                     { text: "Transactions", to: "" }
-                ]
+                ],
+                currentPage: 0,
+                totalPage: 1, // 为了允许 mounted 调用 nthTxPage
+                totalTxs: 0
             };
+        },
+        methods: {
+            nthTxPage(p) {
+                if (p)
+                    if (0 < p && p < this.totalPage + 1)
+                        if (p == this.currentPage)
+                            console.log("nthTxPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                        else if (this.ajaxing)
+                            console.log("nthTxPage - 上一个 ajax 还未返回, 忽略此次调用");
+                        else {
+                            this.ajaxing = true;
+
+                            api.getTx({ p }, o => {
+                                this.ajaxing = false;
+                                this.arr = o.txnList;
+                                this.currentPage = o.currentPage;
+                                this.totalPage = o.totalPage;
+                                this.totalTxs = o.txnCnt;
+                            }, xhr => {
+                                console.log(xhr);
+                                // this.ajaxing = false; // 由于跳转了所以不需要修改 ajaxing
+                                this.$router.replace("/404");
+                            });
+                        }
+                    else
+                        console.log("nthTxPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                else
+                    console.log("nthTxPage - 无效的 p", p, ", 忽略此次调用");
+            },
+            onFirst() {
+                this.nthTxPage(1);
+            },
+            onLast() {
+                this.nthTxPage(this.totalPage);
+            },
+            onNext() {
+                this.nthTxPage(this.currentPage + 1);
+            },
+            onPrev() {
+                this.nthTxPage(this.currentPage - 1);
+            }
+        },
+        mounted() {
+            console.log("根据 url 参数决定怎么做", this.$route.query);
+            this.nthTxPage(1);
+            this.totalPage = 0;
         }
     };
 </script>
