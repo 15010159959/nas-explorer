@@ -281,7 +281,7 @@
                             </div>
                             <div class=" list_banner_right">
                                 Mined By
-                                <a href="address.html?id=%From">{{ o.miner.hash }}</a>
+                                <router-link v-bind:to="/address/ +  o.miner.hash"> {{ o.miner.hash }} </router-link>
                                 <p class="mt16">
                                     <a href="txs.html?id=%Block">
                                         <b>{{ o.txnCnt }}</b>

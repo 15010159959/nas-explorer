@@ -112,7 +112,8 @@
 
 
                 api.getTx(this.$route.params.id, o => {
-                    this.block = o;
+                    this.tx = o;
+                    console.log(o);
                 }, xhr => {
                     console.log(xhr);
 
@@ -121,7 +122,7 @@
         },
         data() {
             return {
-                // block: {},
+                tx: {},
                 tab: 0,
                 tabButtons: ["Overview", "Internal Transactions", "Event Logs"]
             };
