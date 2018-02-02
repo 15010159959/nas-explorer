@@ -23,7 +23,7 @@
         <vue-bread v-bind:arr=breadcrumb title="Contract Internal Transactions"></vue-bread>
 
         <div class="container mt20">
-            <div class="align-items-center info-and-pagination justify-content-between row">
+            <div class="align-items-center info-and-pagination row">
                 <div class="col info">
                     <div>A Total Of %1 Internal Transactions found</div>
                     <div>
