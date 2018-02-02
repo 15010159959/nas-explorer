@@ -315,7 +315,6 @@
                                     To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <router-link v-bind:to="/block/ + o.to">{{ o.to.hash }} </router-link>
                                 </p>
-                                <p>Amount 0 Ether</p>
                             </div>
                         </li>
                     </ul>
