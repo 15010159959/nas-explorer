@@ -3,8 +3,8 @@
     <div class=vue-blocks>
         <vue-bread v-bind:arr=breadcrumb title="Blocks"></vue-bread>
 
-        <div class=container>
-            <div class="align-items-center info-and-pagination mt20 row">
+        <div class="container mt20">
+            <div class="align-items-center info-and-pagination row">
                 <div class=col>Showing Block (#{{ heightFrom }} to #{{ heightTo }}) out of {{ totalBlocks }} total blocks</div>
                 <vue-pagination class=col-auto v-bind:current=currentPage v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
             </div>
