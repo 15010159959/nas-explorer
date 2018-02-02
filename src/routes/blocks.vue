@@ -20,7 +20,7 @@
                 </tr>
                 <tr v-for="o in arr">
                     <td>
-                        <router-link v-bind:to='"/block/" + o.miner.id'>{{ o.height }}</router-link>
+                        <router-link v-bind:to='"/block/" + o.height'>{{ o.height }}</router-link>
                     </td>
                     <td>{{ o.timestamp }}</td>
                     <td>
