@@ -183,8 +183,17 @@
 
     .vue-home .list_right_banner_right p {
         width: 89%;
+        height: 28px;
         text-overflow: ellipsis;
         overflow: hidden;
+        margin: 0;
+    }
+
+    .vue-home .list_right_banner_right p a {
+        display: inline-block;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .vue-home #chart {
@@ -306,14 +315,13 @@
                             </div>
                             <div class="list_right_banner_right ">
                                 <p>
-                                    TX#
-                                    <router-link v-bind:to="/tx/ + o.hash">{{ o.hash }}</router-link>
+                                    <router-link v-bind:to="/tx/ + o.hash">TX#&nbsp;{{ o.hash }}</router-link>
                                 </p>
                                 <p>
-                                    From
-                                    <router-link v-bind:to="/address/ + o.from">{{ o.from.hash }}</router-link>
-                                    To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <router-link v-bind:to="/block/ + o.to">{{ o.to.hash }} </router-link>
+                                    <router-link  v-bind:to="/address/ + o.from.hash">From&nbsp;{{ o.from.hash }}</router-link>
+                                </p>
+                                <p>
+                                    <router-link  v-bind:to="/block/ + o.to.hash">To&nbsp;{{ o.to.hash }} </router-link>
                                 </p>
                             </div>
                         </li>
