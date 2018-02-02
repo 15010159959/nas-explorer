@@ -107,7 +107,7 @@
                 <div class="align-items-center row title">
                     <div class=col>
                         <span class="c333 fa fa-sort-amount-desc" aria-hidden=true></span>
-                        Latest %1 blocks (From a total of
+                        Latest {{ mined.length }} blocks (From a total of
                         <a href="blocks.html?m=%id-from-url">%2</a> with %3 mined)
                     </div>
                     <div class=col-auto>
@@ -124,16 +124,15 @@
                         <th>GasUsed</th>
                         <th>Reward</th>
                     </tr>
-
-                    <tr>
+                    <tr v-for="o in mined">
                         <td>
-                            <a href="block.html?id=%Block">%Block</a>
+                            <router-link v-bind:to='"/block/" + o.height'>{{ o.height }}</router-link>
                         </td>
-                        <td>%Age</td>
-                        <td>%txn</td>
-                        <td>%Difficulty</td>
-                        <td>%GasUsed</td>
-                        <td>%Reward</td>
+                        <td>{{ o.timestamp }}</td>
+                        <td>{{ o.txnCnt }}</td>
+                        <td>???</td>
+                        <td>{{ o.gasUsed }}</td>
+                        <td>???</td>
                     </tr>
                 </table>
             </div>
@@ -191,13 +190,10 @@
         },
         computed: {
             urlChange() {
-                console.log("在这里下载 address 信息, 目前的 address id 是", this.$route.params.id);
-
                 api.getAddress(this.$route.params.id, o => {
-                    console.log(o);
+                    this.mined = o.minedBlkList;
                     this.obj = o;
                     this.txs = o.txList;
-
                 }, xhr => {
                     this.$router.replace("/404");
                 });
