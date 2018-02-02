@@ -36,12 +36,12 @@
             </button>
             <div class="collapse navbar-collapse" id=navbarSupportedContent>
                 <ul class="navbar-nav mr-auto">
-                    <li class=nav-item v-bind:class="{ active: $root.headerActive == 1 }">
+                    <li class=nav-item v-bind:class="{ active: $route.meta.headerActive == 1 }">
                         <router-link to=/ class=nav-link>HOME
                             <span class=sr-only>(current)</span>
                         </router-link>
                     </li>
-                    <li class="nav-item dropdown" v-bind:class="{ active: $root.headerActive == 2 }">
+                    <li class="nav-item dropdown" v-bind:class="{ active: $route.meta.headerActive == 2 }">
                         <a class="nav-link dropdown-toggle" href=# id=navbarDropdown1 role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>BLOCKCHAIN</a>
                         <div class=dropdown-menu aria-labelledby="navbarDropdown1">
                             <router-link class=dropdown-item to=/txs>View Txns</router-link>
@@ -49,13 +49,13 @@
                             <router-link class=dropdown-item to=/blocks>View Blocks</router-link>
                         </div>
                     </li>
-                    <li class="nav-item dropdown" v-bind:class="{ active: $root.headerActive == 3 }">
+                    <li class="nav-item dropdown" v-bind:class="{ active: $route.meta.headerActive == 3 }">
                         <a class="nav-link dropdown-toggle" href=# id=navbarDropdown2 role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>ACCOUNT</a>
                         <div class=dropdown-menu aria-labelledby=navbarDropdown2>
                             <router-link class=dropdown-item to=/accounts>ALL Accounts</router-link>
                         </div>
                     </li>
-                    <!-- <li class=nav-item v-bind:class="{ active: $root.headerActive == 4 }">
+                    <!-- <li class=nav-item v-bind:class="{ active: $route.meta.headerActive == 4 }">
                         <a class=nav-link href=#>TOKEN
                             <span class=sr-only>(current)</span>
                         </a>
