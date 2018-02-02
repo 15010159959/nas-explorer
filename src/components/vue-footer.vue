@@ -76,19 +76,19 @@
                     <div class="footer_list ">
                         <div class="footer_list_banner ">
                             <img src="/static/img/msg.png " alt=" ">
-                            <a href="https://etherscan.io/tx/0x82a26dae6e67b722ad9bf2bd5ef9998c82b49d3f010bd0215a8f4e9580e4e2b7#comments ">Please, Please send the 1 ether back to my address 0x5b...</a>
+                            <a href="">Please, Please send the 1 ether back to my address 0x5b...</a>
                         </div>
                         <div class="footer_list_banner ">
                             <img src="/static/img/msg.png " alt=" ">
-                            <a href="https://etherscan.io/tx/0x82a26dae6e67b722ad9bf2bd5ef9998c82b49d3f010bd0215a8f4e9580e4e2b7#comments ">Please, Please send the 1 ether back to my address 0x5b...</a>
+                            <a href="">Please, Please send the 1 ether back to my address 0x5b...</a>
                         </div>
                         <div class="footer_list_banner ">
                             <img src="/static/img/msg.png " alt=" ">
-                            <a href="https://etherscan.io/tx/0x82a26dae6e67b722ad9bf2bd5ef9998c82b49d3f010bd0215a8f4e9580e4e2b7#comments ">Please, Please send the 1 ether back to my address 0x5b...</a>
+                            <a href="">Please, Please send the 1 ether back to my address 0x5b...</a>
                         </div>
                         <div class="footer_list_banner ">
                             <img src="/static/img/msg.png " alt=" ">
-                            <a href="https://etherscan.io/tx/0x82a26dae6e67b722ad9bf2bd5ef9998c82b49d3f010bd0215a8f4e9580e4e2b7#comments ">Please, Please send the 1 ether back to my address 0x5b...</a>
+                            <a href="">Please, Please send the 1 ether back to my address 0x5b...</a>
                         </div>
                     </div>
                 </div>

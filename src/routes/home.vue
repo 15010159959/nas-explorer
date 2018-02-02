@@ -169,7 +169,7 @@
         width: 10%;
         height: 86px;
         position: absolute;
-        top: 14%;
+        top: 28%;
         left: 2%;
     }
 
@@ -311,7 +311,7 @@
                     <ul class="list_right ">
                         <li v-for="o in txs">
                             <div class="list_right_banner_left ">
-                                <img src="/static/img/icon.png " height="42 " width="34 " alt=" ">
+                                <img src="/static/img/icon.png " height="43" width="43" alt=" ">
                             </div>
                             <div class="list_right_banner_right ">
                                 <p>
