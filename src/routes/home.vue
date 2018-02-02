@@ -191,7 +191,7 @@
 
     .vue-home .list_right_banner_right p a {
         display: inline-block;
-        width: 300px;
+        width: 366px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -315,13 +315,13 @@
                             </div>
                             <div class="list_right_banner_right ">
                                 <p>
-                                    <router-link v-bind:to="/tx/ + o.hash">TX#&nbsp;{{ o.hash }}</router-link>
+                                    <router-link v-bind:to="/tx/ + o.hash">TX#&nbsp;&nbsp;&nbsp;{{ o.hash }}</router-link>
                                 </p>
                                 <p>
                                     <router-link  v-bind:to="/address/ + o.from.hash">From&nbsp;{{ o.from.hash }}</router-link>
                                 </p>
                                 <p>
-                                    <router-link  v-bind:to="/block/ + o.to.hash">To&nbsp;{{ o.to.hash }} </router-link>
+                                    <router-link  v-bind:to="/block/ + o.to.hash">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ o.to.hash }} </router-link>
                                 </p>
                             </div>
                         </li>
