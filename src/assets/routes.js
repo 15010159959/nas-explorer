@@ -18,7 +18,7 @@ module.exports = [{
 }, {
     component: require("@/routes/tx").default,
     meta: { headerActive: 2 },
-    path: "/tx"
+    path: "/tx/:id"
 }, {
     component: require("@/routes/txs").default,
     meta: { headerActive: 2 },
