@@ -55,17 +55,17 @@
                 currentPage: 0,
                 totalAccounts: 0,
                 totalBalance: 0,
-                totalPage: 1 // 为了允许 mounted 调用 nthTxPage
+                totalPage: 1 // 为了允许 mounted 调用 nthPage
             };
         },
         methods: {
-            nthTxPage(p) {
+            nthPage(p) {
                 if (p)
                     if (0 < p && p < this.totalPage + 1)
                         if (p == this.currentPage)
-                            console.log("nthTxPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                            console.log("nthPage - 请求的第", p, "页正是当前页, 忽略此次调用");
                         else if (this.ajaxing)
-                            console.log("nthTxPage - 上一个 ajax 还未返回, 忽略此次调用");
+                            console.log("nthPage - 上一个 ajax 还未返回, 忽略此次调用");
                         else {
                             this.ajaxing = true;
 
@@ -92,25 +92,25 @@
                             });
                         }
                     else
-                        console.log("nthTxPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                        console.log("nthPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
                 else
-                    console.log("nthTxPage - 无效的 p", p, ", 忽略此次调用");
+                    console.log("nthPage - 无效的 p", p, ", 忽略此次调用");
             },
             onFirst() {
-                this.nthTxPage(1);
+                this.nthPage(1);
             },
             onLast() {
-                this.nthTxPage(this.totalPage);
+                this.nthPage(this.totalPage);
             },
             onNext() {
-                this.nthTxPage(this.currentPage + 1);
+                this.nthPage(this.currentPage + 1);
             },
             onPrev() {
-                this.nthTxPage(this.currentPage - 1);
+                this.nthPage(this.currentPage - 1);
             }
         },
         mounted() {
-            this.nthTxPage(1);
+            this.nthPage(1);
             this.totalPage = 0;
         }
     };
