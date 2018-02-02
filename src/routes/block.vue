@@ -20,7 +20,7 @@
         <div class=mt20></div>
         <div class=tab v-show="tab == 1">
             <h4>Block Information</h4>
-            <table class="table">
+            <table class=table v-if=block>
                 <tr>
                     <td>Height</td>
                     <td>
@@ -108,7 +108,7 @@
         },
         data() {
             return {
-                block: {},
+                block: null,
                 tab: 0,
                 tabButtons: ["Overview"]
             };

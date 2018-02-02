@@ -425,8 +425,6 @@
 
                 vm.chartConfig.series[0].data = arr;
                 require("highcharts").chart("chart", vm.chartConfig);
-
-                console.log(o);
             }, xhr => {
                 console.log(xhr);
 

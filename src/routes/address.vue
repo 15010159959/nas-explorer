@@ -27,7 +27,7 @@
     <!-- https://etherscan.io/address/0xea674fdde714fd979de3edf0f56aa9716b898ec8 -->
     <div class=vue-address v-bind:triggerComputed=urlChange>
         <vue-bread v-bind:arr=breadcrumb v-bind:title='"Address " + $route.params.id'></vue-bread>
-        <div class=container>
+        <div class=container v-if=obj>
             <table class="c333 table">
                 <tr>
                     <th>
@@ -41,15 +41,15 @@
                 </tr>
                 <tr>
                     <td>ETH Balance:</td>
-                    <td>%xxx</td>
+                    <td>{{ obj.address.currentBalance }}</td>
                 </tr>
                 <tr>
                     <td>Mined:</td>
-                    <td>%xxx</td>
+                    <td>{{ obj.minedBlkCnt }}</td>
                 </tr>
                 <tr>
                     <td>No Of Transactions:</td>
-                    <td>%xxx</td>
+                    <td>{{ obj.pendingTxCnt }}</td>
                 </tr>
             </table>
 
@@ -59,11 +59,11 @@
             <!--    Transactions
                 ============================================================ -->
             <div class=tab v-show="tab == 1">
-                <div class="align-items-center justify-content-between row title">
+                <div class="align-items-center row title">
                     <div class=col>
-                        <span class="c333 fa fa-sort-amount-desc" aria-hidden="true"></span>
-                        Latest %1 txns from a total Of
-                        <a href="txs.html">%2</a>
+                        <span class="c333 fa fa-sort-amount-desc" aria-hidden=true></span>
+                        Latest {{ txs.length }} txns from a total Of
+                        <router-link v-bind:to='"/txs?a=" + $route.params.id'>{{ obj.txCnt }}</router-link>
                     </div>
                     <div class=col-auto>
                         <router-link class="btn btn-link" v-bind:to='"/txs?a=" + $route.params.id'>View All</router-link>
@@ -79,7 +79,7 @@
                         <th></th>
                         <th>To</th>
                         <th>Value</th>
-                        <th class="txfee">[TxFee]</th>
+                        <th class=txfee>[TxFee]</th>
                     </tr>
 
                     <tr v-for="o in txs">
@@ -96,7 +96,7 @@
                             <router-link v-bind:to='"/address/" + o.to'>{{ o.to }}</router-link>
                         </td>
                         <td>{{ o.value }}</td>
-                        <td class="txfee">{{ o.txFee }}</td>
+                        <td class=txfee>{{ o.txFee }}</td>
                     </tr>
                 </table>
             </div>
@@ -104,7 +104,7 @@
             <!--    Mined Blocks
                 ============================================================ -->
             <div class=tab v-show="tab == 2">
-                <div class="align-items-center justify-content-between row title">
+                <div class="align-items-center row title">
                     <div class=col>
                         <span class="c333 fa fa-sort-amount-desc" aria-hidden=true></span>
                         Latest %1 blocks (From a total of
@@ -141,9 +141,9 @@
             <!--    Mined Uncles
                 ============================================================ -->
             <!-- <div class=tab v-show="tab == 3">
-                <div class="align-items-center justify-content-between row title">
+                <div class="align-items-center row title">
                     <div class=col>
-                        <span class="c333 fa fa-sort-amount-desc" aria-hidden="true"></span>
+                        <span class="c333 fa fa-sort-amount-desc" aria-hidden=true></span>
                         Latest %1 uncles (From a total of
                         <a href="uncles.html?id=%id-from-url">%2</a> with %3 mined)
                     </div>
@@ -197,6 +197,7 @@
                     console.log(o);
                     this.obj = o;
                     this.txs = o.txList;
+
                 }, xhr => {
                     this.$router.replace("/404");
                 });
@@ -209,6 +210,8 @@
                     { text: "Normal Accounts", to: "/accounts" },
                     { text: "Address", to: "" }
                 ],
+                mined: [],
+                obj: null,
                 tab: 0,
                 tabButtons: ["Transactions", "Mined Blocks"],
                 txs: []

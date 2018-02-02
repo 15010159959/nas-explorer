@@ -4,7 +4,7 @@
         <vue-bread v-bind:arr=breadcrumb title="Blocks"></vue-bread>
 
         <div class=container>
-            <div class="align-items-center info-and-pagination justify-content-between mt20 row">
+            <div class="align-items-center info-and-pagination mt20 row">
                 <div class=col>Showing Block (#{{ heightFrom }} to #{{ heightTo }}) out of {{ totalBlocks }} total blocks</div>
                 <vue-pagination class=col-auto v-bind:current=currentPage v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
             </div>
@@ -58,17 +58,17 @@
                 heightFrom: 0,
                 heightTo: 0,
                 totalBlocks: 0,
-                totalPage: 1 // 为了允许 mounted 调用 nthTxPage
+                totalPage: 1 // 为了允许 mounted 调用 nthPage
             };
         },
         methods: {
-            nthTxPage(p) {
+            nthPage(p) {
                 if (p)
                     if (0 < p && p < this.totalPage + 1)
                         if (p == this.currentPage)
-                            console.log("nthTxPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                            console.log("nthPage - 请求的第", p, "页正是当前页, 忽略此次调用");
                         else if (this.ajaxing)
-                            console.log("nthTxPage - 上一个 ajax 还未返回, 忽略此次调用");
+                            console.log("nthPage - 上一个 ajax 还未返回, 忽略此次调用");
                         else {
                             this.ajaxing = true;
 
@@ -93,26 +93,26 @@
                             });
                         }
                     else
-                        console.log("nthTxPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                        console.log("nthPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
                 else
-                    console.log("nthTxPage - 无效的 p", p, ", 忽略此次调用");
+                    console.log("nthPage - 无效的 p", p, ", 忽略此次调用");
             },
             onFirst() {
-                this.nthTxPage(1);
+                this.nthPage(1);
             },
             onLast() {
-                this.nthTxPage(this.totalPage);
+                this.nthPage(this.totalPage);
             },
             onNext() {
-                this.nthTxPage(this.currentPage + 1);
+                this.nthPage(this.currentPage + 1);
             },
             onPrev() {
-                this.nthTxPage(this.currentPage - 1);
+                this.nthPage(this.currentPage - 1);
             }
         },
         mounted() {
             console.log("根据 url 参数决定怎么做", this.$route.query);
-            this.nthTxPage(1);
+            this.nthPage(1);
             this.totalPage = 0;
         }
     };

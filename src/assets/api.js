@@ -73,10 +73,11 @@ module.exports = {
     },
 
     // get api/tx?
-    // - a      - address hash
-    // - block  - block height
-    // - p      - 页码, 默认 1
-    // - type   - 目前只有 latest
+    // - a          - address hash
+    // - block      - block height
+    // - isPending
+    // - p          - 页码, 默认 1
+    // - type       - 目前只有 latest
     // get api/tx/
     // - cnt_static
     // - <id or hash>

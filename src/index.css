@@ -43,7 +43,7 @@ dl, ol, ul {
 /*  overrides - bootstrap
     ============================================================ */
 
-a, .btn-link {
+a, .btn-link, .page-link {
     color: #3498db;
 }
 
