@@ -167,9 +167,9 @@
 
     .vue-home .list_right_banner_left {
         width: 10%;
-        height: 80px;
+        height: 86px;
         position: absolute;
-        top: 4%;
+        top: 14%;
         left: 2%;
     }
 
