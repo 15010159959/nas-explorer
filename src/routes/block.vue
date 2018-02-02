@@ -66,14 +66,14 @@
                 </tr>
 
                 <tr>
-                    <td>Mined By</td>
+                    <td>Minted</td>
                     <td>
                         <a href="address.html?mined">{{ block.miner.hash }}</a>
                         (Nanopool)
                     </td>
                 </tr>
                 <tr>
-                    <td>Gas Used</td>
+                    <td>Gas reward</td>
                     <td>{{ block.blkGasUsed }} {{ block.blkGasUsedRate }}</td>
                 </tr>
                 <tr>
@@ -94,7 +94,7 @@
     module.exports = {
         components: {
             "vue-tab-buttons": require("@/components/vue-tab-buttons").default
-        },
+        }, 
         computed: {
             urlChange() {
                 console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);
