@@ -40,7 +40,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <td>ETH Balance:</td>
+                    <td>NAS Balance:</td>
                     <td>{{ obj.address.currentBalance }}</td>
                 </tr>
                 <tr>
