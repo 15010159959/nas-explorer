@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>Gas Used By Txn</td>
-                    <td>{{ tx.gasUsed }}</td>
+                    <td>{{ tx.gasReward }}</td>
                 </tr>
                 <tr>
                     <td>Gas Price</td>

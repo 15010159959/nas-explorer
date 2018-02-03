@@ -13,7 +13,7 @@
                     <th>Height</th>
                     <th>Age</th>
                     <th>txn</th>
-                    <th>Miner</th>
+                    <th>Minted</th>
                     <th>Gas Reward</th>
                     <th>GasLimit</th>
                     <th>Avg.GasPrice</th>
@@ -29,7 +29,7 @@
                     <td>
                         <router-link v-bind:to='"/address/" + o.miner.hash'>{{ o.miner.alias || o.miner.hash }}</router-link>
                     </td>
-                    <td>{{ o.gasUsed }}</td>
+                    <td>{{ o.gasReward }}</td>
                     <td>{{ o.gasLimit }}</td>
                     <td>{{ o.avgGasPrice }}</td>
                 </tr>

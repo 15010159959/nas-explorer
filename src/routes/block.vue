@@ -51,6 +51,7 @@
                     <td>Transactions</td>
                     <td>
                         <a href="txs.html?block=%Block">{{ block.txCnt }}</a>
+                        <router-link v-bind:to='"/txs?block=" + block.parentHash'>{{ block.parentHash }}</router-link>
                         in this block
                     </td>
                 </tr>
@@ -61,20 +62,20 @@
                 <tr>
                     <td>Parent Hash</td>
                     <td>
-                        <a href="block.html?block=%parentHash">{{ block.parentHash }}</a>
+                        <router-link v-bind:to='"/block/" + block.parentHash'>{{ block.parentHash }}</router-link>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Minted</td>
                     <td>
-                        <a href="address.html?mined">{{ block.miner.hash }}</a>
+                        <router-link v-bind:to='"/address/" + block.miner.hash + "?mined"'>{{ block.miner.alias || block.miner.hash }}</router-link>
                         (Nanopool)
                     </td>
                 </tr>
                 <tr>
                     <td>Gas Reward</td>
-                    <td>{{ block.blkGasUsed }} {{ block.blkGasUsedRate }}</td>
+                    <td>{{ block.blkGasReward }} {{ block.blkGasRewardRate }}</td>
                 </tr>
             </table>
         </div>
@@ -86,7 +87,7 @@
     module.exports = {
         components: {
             "vue-tab-buttons": require("@/components/vue-tab-buttons").default
-        }, 
+        },
         computed: {
             urlChange() {
                 console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);

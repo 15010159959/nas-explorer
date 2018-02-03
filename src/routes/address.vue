@@ -41,7 +41,7 @@
                 <tr>
                     <th>
                         Overview
-                        <span class=c777> | {{ obj.address.alias }}</span>
+                        <span class=c777 v-show=obj.address.alias> | {{ obj.address.alias }}</span>
                     </th>
                     <th class=text-right>
                         * uncomment this img tag
@@ -133,7 +133,6 @@
                         <th>Block</th>
                         <th>Age</th>
                         <th>txn</th>
-                        <th>GasUsed</th>
                         <th>Reward</th>
                     </tr>
                     <tr v-for="o in mined">
@@ -142,7 +141,6 @@
                         </td>
                         <td>{{ o.timestamp }}</td>
                         <td>{{ o.txnCnt }}</td>
-                        <td>{{ o.gasUsed }}</td>
                         <td>{{ o.gasReward }}</td>
                     </tr>
                 </table>
@@ -168,7 +166,7 @@
                         <th>Age</th>
                         <th>UncleNumber</th>
                         <th>Difficulty</th>
-                        <th>GasUsed</th>
+                        <th>GasReward</th>
                         <th>Reward</th>
                     </tr>
 
@@ -181,7 +179,7 @@
                             <a href="uncle.html?id=%perhaps-uncle-id">%UncleNumber</a>
                         </td>
                         <td>%Difficulty</td>
-                        <td>%GasUsed</td>
+                        <td>%GasReward</td>
                         <td>%Reward</td>
                     </tr>
                 </table>
