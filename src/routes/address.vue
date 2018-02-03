@@ -3,12 +3,21 @@
         width: 50px;
     }
 
+    .vue-address td.in::before,
     .vue-address td.out::before {
-        background-color: #e67e22;
         border-radius: 4px;
         color: white;
-        content: "out";
         padding: 3px 5px;
+    }
+
+    .vue-address td.in::before {
+        background-color: var(--green);
+        content: "in";
+    }
+
+    .vue-address td.out::before {
+        background-color: var(--orange);
+        content: "out";
     }
 
     .vue-address .container .table th {
@@ -83,19 +92,21 @@
                     </tr>
 
                     <tr v-for="o in txs">
-                        <td class=tdawddd>
+                        <td class=tdxxxwddd>
                             <router-link v-bind:to='"/tx/" + $route.params.id'>{{ o.hash }}</router-link>
                         </td>
                         <td>
                             <router-link v-bind:to='"/block/" + o.blockHeight'>{{ o.blockHeight }}</router-link>
                         </td>
                         <td>{{ o.timestamp }}</td>
-                        <td class=tdawddd>
-                            <router-link v-bind:to='"/address/" + o.from'>{{ o.from }}</router-link>
+                        <td class=tdxxxwddd>
+                            <span v-if="o.from == $route.params.id">{{ o.from }}</span>
+                            <router-link v-else v-bind:to='"/address/" + o.from'>{{ o.from }}</router-link>
                         </td>
-                        <td class="out text-uppercase"></td>
-                        <td class=tdawddd>
-                            <router-link v-bind:to='"/address/" + o.to'>{{ o.to }}</router-link>
+                        <td class=text-uppercase v-bind:class=inOutClass(o)></td>
+                        <td class=tdxxxwddd>
+                            <span v-if="o.to == $route.params.id">{{ o.to }}</span>
+                            <router-link v-else v-bind:to='"/address/" + o.to'>{{ o.to }}</router-link>
                         </td>
                         <td>{{ o.value }}</td>
                         <td class=txfee>{{ o.txFee }}</td>
@@ -212,6 +223,16 @@
                 tabButtons: ["Transactions", "Mined Blocks"],
                 txs: []
             };
+        },
+        methods: {
+            inOutClass(o) {
+                if (o.from == this.$route.params.id)
+                    return "out";
+                else if (o.to == this.$route.params.id)
+                    return "in";
+                else
+                    return "";
+            }
         }
     };
 </script>

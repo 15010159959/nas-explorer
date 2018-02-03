@@ -27,19 +27,19 @@
                     <th>Value</th>
                 </tr>
                 <tr v-for="o in arr">
-                    <td class=tdawddd>
+                    <td class=tdxxxwddd>
                         <router-link v-bind:to='"/tx/" + o.hash'>{{ o.hash }}</router-link>
                     </td>
                     <td>{{ o.timestamp }}</td>
                     <td>{{ o.gasLimit }}</td>
                     <td>{{ o.avgGasPrice }}</td>
-                    <td class=tdawddd>
+                    <td class=tdxxxwddd>
                         ???
                     </td>
                     <td>
                         <span class="fa fa-arrow-right" aria-hidden="true"></span>
                     </td>
-                    <td class=tdawddd>
+                    <td class=tdxxxwddd>
                         ???
                     </td>
                     <td>???</td>
