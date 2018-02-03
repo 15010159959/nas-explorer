@@ -49,6 +49,7 @@
         data() {
             return {
                 ajaxing: false,
+                ajaxParam: {},
                 arr: [],
                 breadcrumb: [
                     { text: "Home", to: "/" },
@@ -58,21 +59,23 @@
                 heightFrom: 0,
                 heightTo: 0,
                 totalBlocks: 0,
-                totalPage: 1 // 为了允许 mounted 调用 nthPage
+                totalPage: 0
             };
         },
         methods: {
-            nthPage(p) {
+            changePage() {
+                var p = this.ajaxParam.p;
+
                 if (p)
                     if (0 < p && p < this.totalPage + 1)
                         if (p == this.currentPage)
-                            console.log("nthPage - 请求的第", p, "页正是当前页, 忽略此次调用");
+                            console.log("changePage - 请求的第", p, "页正是当前页, 忽略此次调用");
                         else if (this.ajaxing)
-                            console.log("nthPage - 上一个 ajax 还未返回, 忽略此次调用");
+                            console.log("changePage - 上一个 ajax 还未返回, 忽略此次调用");
                         else {
                             this.ajaxing = true;
 
-                            api.getBlock({ p }, o => {
+                            api.getBlock(this.ajaxParam, o => {
                                 this.ajaxing = false;
                                 this.arr = o.data;
                                 this.currentPage = o.page;
@@ -93,27 +96,44 @@
                             });
                         }
                     else
-                        console.log("nthPage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
+                        console.log("changePage - 请求的第", p, "页不在 [ 1,", this.totalPage, "] 内, 忽略此次调用");
                 else
-                    console.log("nthPage - 无效的 p", p, ", 忽略此次调用");
+                    console.log("changePage - 无效的 p", p, ", 忽略此次调用");
+            },
+            initByRoute() {
+                this.ajaxParam = {
+                    // a: this.$route.query.a,
+                    p: 1
+                };
+
+                this.totalPage = 1;
+                this.changePage();
+                this.totalPage = 0;
             },
             onFirst() {
-                this.nthPage(1);
+                this.ajaxParam.p = 1;
+                this.changePage();
             },
             onLast() {
-                this.nthPage(this.totalPage);
+                this.ajaxParam.p = this.totalPage;
+                this.changePage();
             },
             onNext() {
-                this.nthPage(this.currentPage + 1);
+                this.ajaxParam.p = this.currentPage + 1;
+                this.changePage();
             },
             onPrev() {
-                this.nthPage(this.currentPage - 1);
+                this.ajaxParam.p = this.currentPage - 1;
+                this.changePage();
             }
         },
         mounted() {
-            console.log("根据 url 参数决定怎么做", this.$route.query);
-            this.nthPage(1);
-            this.totalPage = 0;
+            this.initByRoute();
+        },
+        watch: {
+            $route() {
+                this.initByRoute();
+            }
         }
     };
 </script>

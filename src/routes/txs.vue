@@ -99,7 +99,7 @@
                     { text: "Transactions", to: "" }
                 ],
                 currentPage: 0,
-                totalPage: 1, // 为了允许 mounted 调用 changePage
+                totalPage: 0,
                 totalTxs: 0
             };
         },
@@ -133,6 +133,16 @@
                 else
                     console.log("changePage - 无效的 p", p, ", 忽略此次调用");
             },
+            initByRoute() {
+                this.ajaxParam = {
+                    a: this.$route.query.a,
+                    p: 1
+                };
+
+                this.totalPage = 1;
+                this.changePage();
+                this.totalPage = 0;
+            },
             onFirst() {
                 this.ajaxParam.p = 1;
                 this.changePage();
@@ -151,15 +161,12 @@
             }
         },
         mounted() {
-            console.log("根据 url 参数决定怎么做", this.$route.query);
-
-            this.ajaxParam = {
-                a: this.$route.query.a,
-                p: 1
-            };
-
-            this.changePage();
-            this.totalPage = 0;
+            this.initByRoute();
+        },
+        watch: {
+            $route() {
+                this.initByRoute();
+            }
         }
     };
 </script>

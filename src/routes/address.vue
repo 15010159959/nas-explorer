@@ -32,7 +32,7 @@
                 <tr>
                     <th>
                         Overview
-                        <span class=c777> | %from</span>
+                        <span class=c777> | {{ obj.address.alias }}</span>
                     </th>
                     <th class=text-right>
                         * uncomment this img tag
@@ -90,7 +90,9 @@
                             <router-link v-bind:to='"/block/" + o.blockHeight'>{{ o.blockHeight }}</router-link>
                         </td>
                         <td>{{ o.timestamp }}</td>
-                        <td>%From</td>
+                        <td class=tdawddd>
+                            <router-link v-bind:to='"/address/" + o.from'>{{ o.from }}</router-link>
+                        </td>
                         <td class="out text-uppercase"></td>
                         <td class=tdawddd>
                             <router-link v-bind:to='"/address/" + o.to'>{{ o.to }}</router-link>
@@ -132,7 +134,7 @@
                         <td>{{ o.txnCnt }}</td>
                         <td>???</td>
                         <td>{{ o.gasUsed }}</td>
-                        <td>???</td>
+                        <td>{{ o.gasReward }}</td>
                     </tr>
                 </table>
             </div>
