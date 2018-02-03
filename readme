@@ -4,14 +4,18 @@
 
 block infomation 里面 详情
 - mint 过去式               // done
-- 朝代信息
-- 是否达到 lib - 最后的一个不可改变的区块，达到 lib 此链不可改
+- 朝代信息 - 是否达到 lib - 最后的一个不可改变的区块，达到 lib 此链不可改
 - 没有 nonce, gas limit     // done
 
 address 详情
 - miner -> minted           // done
 
 address 前生成图标, 参考 eserscan 算法
+
+Host neb-cal-explorer
+HostName 52.53.225.118
+IdentityFile ~/.ssh/id_rsa
+User app
 
 ==================== 参考
 ==================== git

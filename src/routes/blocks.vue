@@ -102,11 +102,12 @@
             },
             initByRoute() {
                 this.ajaxParam = {
-                    // a: this.$route.query.a,
                     p: 1
                 };
 
+                this.currentPage = 0;
                 this.totalPage = 1;
+
                 this.changePage();
                 this.totalPage = 0;
             },
