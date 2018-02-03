@@ -241,7 +241,6 @@
     }
 </style>
 <template>
-
     <div class="container vue-home">
         <div class="top">
             <div class="row">
@@ -440,7 +439,4 @@
         }
 
     };
-
-
-
 </script>

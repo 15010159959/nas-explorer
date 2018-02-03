@@ -115,9 +115,9 @@
         },
         data() {
             return {
-                tx: null,
                 tab: 0,
-                tabButtons: ["Overview"]
+                tabButtons: ["Overview"],
+                tx: null
             };
         }
     };

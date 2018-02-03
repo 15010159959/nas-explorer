@@ -9,7 +9,7 @@
         <vue-bread v-bind:arr=breadcrumb title="Pending Transactions"></vue-bread>
         <div class="container mt20">
             <div class=tip>Tip: Check out the
-                <a href="#">Pending Transaction Pool - Time Series</a>
+                <a href=#>Pending Transaction Pool - Time Series</a>
             </div>
             <div class="align-items-center info-and-pagination mt20 row">
                 <div class=col>A total of {{ totalBlocks }} Pending txns found</div>
@@ -34,15 +34,15 @@
                     <td>{{ o.gasLimit }}</td>
                     <td>{{ o.avgGasPrice }}</td>
                     <td class=tdawddd>
-                        无数据 &lt;router-link v-bind:to='"/tx/" + o.hash'>{{ }}</router-link>
+                        ???
                     </td>
                     <td>
                         <span class="fa fa-arrow-right" aria-hidden="true"></span>
                     </td>
                     <td class=tdawddd>
-                        无数据 &lt;router-link v-bind:to='"/tx/" + o.hash'>{{ }}</router-link>
+                        ???
                     </td>
-                    <td>无数据 %Value</td>
+                    <td>???</td>
                 </tr>
             </table>
             <vue-pagination v-bind:current=currentPage right=1 v-bind:total=totalPage v-on:first=onFirst v-on:last=onLast v-on:next=onNext v-on:prev=onPrev></vue-pagination>
