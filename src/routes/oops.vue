@@ -1,25 +1,17 @@
 <style>
-    .vue-oops .container .oops {
-        text-align: center;
-    }
-
     .vue-oops .image {
-        width: 60%;
         height: 400px;
-        margin: auto;
-        background: url(../img/oops.jpg) center no-repeat;
+        background: url(/static/img/oops.jpg) center no-repeat;
     }
 </style>
 <template>
     <div class="container vue-oops">
-        <div class=oops>
+        <div class=text-center>
             <h1>Oops!</h1>
             <h3>The search string you entered was:</h3>
-            <pre></pre>
+            <pre>{{ $root.search }}</pre>
             <h4>Sorry! This is an invalid search string.</h4>
         </div>
-        <div class=image>
-            <div></div>
-        </div>
+        <div class=image></div>
     </div>
 </template>

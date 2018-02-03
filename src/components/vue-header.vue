@@ -4,10 +4,14 @@
     }
 
     @media (min-width: 992px) {
+        .vue-header .navbar-nav>li>a {
+            border-bottom: 2px solid transparent;
+        }
+
         .vue-header .navbar-nav>li>a:hover,
         .vue-header .navbar-nav>li.active>a,
         .vue-header .navbar-nav>li.show>a {
-            border-bottom: 2px solid #3498db;
+            border-bottom-color: #3498db;
         }
 
         .vue-header.navbar.navbar-default .navbar-nav>li>a {
@@ -69,29 +73,41 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li> -->
                 </ul>
-                <form class=form-inline>
-                    <input id="search_value" class="form-control mr-sm-2" type=search placeholder=Search>
-                    <button id="search" class="btn btn-outline-success" type=submit>GO</button>
+                <form class=form-inline v-on:submit.prevent=onSubmit>
+                    <input class="form-control mr-sm-2" v-model=search type=search placeholder=Search>
+                    <button class="btn btn-outline-success" type=submit>GO</button>
                 </form>
             </div>
         </div>
     </nav>
 </template>
 <script>
+    var api = require("@/assets/api");
 
     module.exports = {
-
-        mounted() {
-            $(document).ready(function () {
-
-                $("#search").click(function () {
-                    var result1 = $("#search_value").val();
-                    alert("url = " + "search?q=" + result1);
-                    window.location.href = "url = " + "search?q=" + result1;
+        data() {
+            return {
+                search: ""
+            };
+        },
+        methods: {
+            onSubmit() {
+                api.getSearch(this.search, o => {
+                    if (o.type == "block")
+                        this.$router.push("/block/" + o.q);
+                    else if (o.type == "address")
+                        this.$router.push("/address/" + o.q);
+                    else if (o.type == "transaction")
+                        this.$router.push("/tx/" + o.q);
+                    else {
+                        this.$root.search = o.q;
+                        this.$router.push("/oops");
+                    }
+                }, () => {
+                    this.$root.search = o.q;
+                    this.$router.push("/oops");
                 });
-
-            })
+            }
         }
-
     };
 </script>

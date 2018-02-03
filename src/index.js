@@ -15,6 +15,9 @@ new Vue({
         vueFooter: require("@/components/vue-footer").default,
         vueHeader: require("@/components/vue-header").default
     },
+    data: {
+        search: ""
+    },
     el: ".vue",
     router: new VueRouter({ routes: require("@/assets/routes") })
 });

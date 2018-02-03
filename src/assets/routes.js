@@ -16,6 +16,9 @@ module.exports = [{
     meta: { headerActive: 2 },
     path: "/blocks"
 }, {
+    component: require("@/routes/oops").default,
+    path: "/oops"
+}, {
     component: require("@/routes/tx").default,
     meta: { headerActive: 2 },
     path: "/tx/:id"

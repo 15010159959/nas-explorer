@@ -72,6 +72,17 @@ module.exports = {
         }, fail);
     },
 
+    getSearch(q, done, fail) {
+        ajax1("search", { q }, function (s, xhr) {
+            var o = JSON.parse(s);
+
+            if (o.code == 0)
+                done(o.data);
+            else
+                fail(xhr);
+        }, fail);
+    },
+
     // get api/tx?
     // - a          - address hash
     // - block      - block height

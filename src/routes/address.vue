@@ -122,7 +122,6 @@
                         <th>Block</th>
                         <th>Age</th>
                         <th>txn</th>
-                        <th>Difficulty</th>
                         <th>GasUsed</th>
                         <th>Reward</th>
                     </tr>
@@ -132,7 +131,6 @@
                         </td>
                         <td>{{ o.timestamp }}</td>
                         <td>{{ o.txnCnt }}</td>
-                        <td>???</td>
                         <td>{{ o.gasUsed }}</td>
                         <td>{{ o.gasReward }}</td>
                     </tr>
