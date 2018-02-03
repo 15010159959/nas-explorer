@@ -136,6 +136,7 @@
             initByRoute() {
                 this.ajaxParam = {
                     a: this.$route.query.a,
+                    block: this.$route.query.block,
                     p: 1
                 };
 

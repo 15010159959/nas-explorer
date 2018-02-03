@@ -24,20 +24,18 @@
                 <tr>
                     <td>Height</td>
                     <td>
-                        <nav aria-label="Page navigation" class="navgation-tab">
-                            <ul class="pagination">
+                        <nav aria-label="Page navigation" class=navgation-tab>
+                            <ul class=pagination>
                                 <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&lt; Prev</span>
-                                    </a>
+                                    <router-link v-bind:to='"/block/" + (+$route.params.id - 1)' aria-label=Previous>
+                                        <span aria-hidden=true>&lt; Prev</span>
+                                    </router-link>
                                 </li>
+                                <li>&nbsp; {{ block.height }} &nbsp;</li>
                                 <li>
-                                    &nbsp;{{ block.height }}&nbsp;
-                                </li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">Next &gt;</span>
-                                    </a>
+                                    <router-link v-bind:to='"/block/" + (+$route.params.id + 1)' aria-label=Next>
+                                        <span aria-hidden=true>Next &gt;</span>
+                                    </router-link>
                                 </li>
                             </ul>
                         </nav>
@@ -50,8 +48,7 @@
                 <tr>
                     <td>Transactions</td>
                     <td>
-                        <a href="txs.html?block=%Block">{{ block.txCnt }}</a>
-                        <router-link v-bind:to='"/txs?block=" + block.parentHash'>{{ block.parentHash }}</router-link>
+                        <router-link v-bind:to='"/txs?block=" + block.height'>{{ block.hash }}</router-link>
                         in this block
                     </td>
                 </tr>
@@ -69,7 +66,7 @@
                 <tr>
                     <td>Minted</td>
                     <td>
-                        <router-link v-bind:to='"/address/" + block.miner.hash + "?mined"'>{{ block.miner.alias || block.miner.hash }}</router-link>
+                        <router-link v-bind:to='"/address/" + block.miner.hash'>{{ block.miner.alias || block.miner.hash }}</router-link>
                         (Nanopool)
                     </td>
                 </tr>
@@ -90,8 +87,6 @@
         },
         computed: {
             urlChange() {
-                console.log("在这里下载 block 信息, 目前的 block id 是", this.$route.params.id);
-
                 api.getBlock(this.$route.params.id, o => {
                     this.block = o;
                 }, xhr => {
