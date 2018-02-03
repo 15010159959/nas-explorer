@@ -3,10 +3,10 @@
 - gas used -> gas reward
 
 block infomation 里面 详情
-- mint 过去式
+- mint 过去式   ///fixed
 - 朝代信息
 - 是否达到 lib - 最后的一个不可改变的区块，达到 lib 此链不可改
-- 没有 nonce, gas limit
+- 没有 nonce, gas limit  ///fixed
 
 address 详情
 - miner -> minted

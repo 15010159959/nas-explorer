@@ -70,10 +70,28 @@
                     </li> -->
                 </ul>
                 <form class=form-inline>
-                    <input class="form-control mr-sm-2" type=search placeholder=Search>
-                    <button class="btn btn-outline-success" type=submit>GO</button>
+                    <input id="search_value" class="form-control mr-sm-2" type=search placeholder=Search>
+                    <button id="search" class="btn btn-outline-success" type=submit>GO</button>
                 </form>
             </div>
         </div>
     </nav>
 </template>
+<script>
+
+    module.exports = {
+
+        mounted() {
+            $(document).ready(function () {
+
+                $("#search").click(function () {
+                    var result1 = $("#search_value").val();
+                    alert("url = " + "search?q=" + result1);
+                    window.location.href = "url = " + "search?q=" + result1;
+                });
+
+            })
+        }
+
+    };
+</script>

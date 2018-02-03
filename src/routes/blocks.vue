@@ -14,7 +14,7 @@
                     <th>Age</th>
                     <th>txn</th>
                     <th>Miner</th>
-                    <th>GasUsed</th>
+                    <th>Gas Reward</th>
                     <th>GasLimit</th>
                     <th>Avg.GasPrice</th>
                 </tr>

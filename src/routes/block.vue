@@ -73,16 +73,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Gas reward</td>
+                    <td>Gas Reward</td>
                     <td>{{ block.blkGasUsed }} {{ block.blkGasUsedRate }}</td>
-                </tr>
-                <tr>
-                    <td>Gas Limit</td>
-                    <td>{{ block.blkGasLimit }}</td>
-                </tr>
-                <tr>
-                    <td>Nonce</td>
-                    <td>{{ block.nonce }}</td>
                 </tr>
             </table>
         </div>
